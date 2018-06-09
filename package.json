@@ -12,7 +12,7 @@
     "lint.dnd": "ng lint @beyerleinf/ngx-dnd",
     "lint.demo": "ng lint demo",
     "test.all": "npm run test.dnd",
-    "test.dnd": "ng test @beyerleinf/ngx-dnd",
+    "test.dnd": "ng test @beyerleinf/ngx-dnd --code-coverage",
     "build.all": "npm run build.dnd && npm run build.demo",
     "build.dnd": "ng build @beyerleinf/ngx-dnd --prod && npm run copy-styles && npm run copy-readme && npm run copy-license",
     "build.demo": "ng build demo --prod",
