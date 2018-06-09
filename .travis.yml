@@ -6,7 +6,6 @@ os:
 - linux
 language: node_js
 node_js:
-- '7'
 - '8'
 before_install:
 - npm set progress false
