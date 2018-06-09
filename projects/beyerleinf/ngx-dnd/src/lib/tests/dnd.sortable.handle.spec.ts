@@ -38,12 +38,12 @@ describe('Sortable Drag and Drop with handle', () => {
   });
 
   it('The elements of the list should be draggable by handle', () => {
-    let values: Array<string> = ['one', 'two', 'three', 'four'];
+    const values: Array<string> = ['one', 'two', 'three', 'four'];
 
     container.sortableList = values;
     componentFixture.detectChanges();
 
-    let ulElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('ul');
+    const ulElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('ul');
 
     expect(ulElem).toBeDefined();
     expect(ulElem.children.length).toBe(values.length);
@@ -59,12 +59,12 @@ describe('Sortable Drag and Drop with handle', () => {
   });
 
   it('The elements of the list should not be draggable by non-handle', () => {
-    let values: Array<string> = ['one', 'two', 'three', 'four'];
+    const values: Array<string> = ['one', 'two', 'three', 'four'];
 
     container.sortableList = values;
     componentFixture.detectChanges();
 
-    let ulElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('ul');
+    const ulElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('ul');
 
     expect(ulElem).toBeDefined();
     expect(ulElem.children.length).toBe(values.length);

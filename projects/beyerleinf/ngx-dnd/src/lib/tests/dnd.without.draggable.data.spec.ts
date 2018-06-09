@@ -34,8 +34,8 @@ describe('Drag and Drop without draggable data', () => {
   });
 
   it('Drop events should not be activated on the wrong drop-zone', (done: any) => {
-    let dragElemOne: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dragIdOne');
-    let dropElemTwo: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dropIdTwo');
+    const dragElemOne: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dragIdOne');
+    const dropElemTwo: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dropIdTwo');
 
     triggerEvent(dragElemOne, 'dragstart', 'MouseEvent');
     triggerEvent(dropElemTwo, 'dragenter', 'MouseEvent');
@@ -73,8 +73,8 @@ describe('Drag and Drop without draggable data', () => {
   });
 
   it('Drop events should be activated on the same drop-zone', (done: any) => {
-    let dragElemOne: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dragIdOne');
-    let dropElemOne: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dropIdOne');
+    const dragElemOne: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dragIdOne');
+    const dropElemOne: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dropIdOne');
 
     triggerEvent(dragElemOne, 'dragstart', 'MouseEvent');
     triggerEvent(dropElemOne, 'dragenter', 'MouseEvent');
@@ -112,8 +112,8 @@ describe('Drag and Drop without draggable data', () => {
   });
 
   it('Drop events on multiple drop-zone', (done: any) => {
-    let dragElemOneTwo: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dragIdOneTwo');
-    let dropElemOneTwo: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dropIdOneTwo');
+    const dragElemOneTwo: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dragIdOneTwo');
+    const dropElemOneTwo: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dropIdOneTwo');
 
     triggerEvent(dragElemOneTwo, 'dragstart', 'MouseEvent');
     triggerEvent(dropElemOneTwo, 'dragenter', 'MouseEvent');

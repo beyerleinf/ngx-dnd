@@ -34,7 +34,7 @@ describe('Drag and Drop with draggable data', () => {
   });
 
   it('It should add the "draggable" attribute', (done: any) => {
-    let dragElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dragId');
+    const dragElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dragId');
 
     expect(dragElem).toBeDefined();
     expect(dragElem.attributes[<any>'draggable']).toBeTruthy();
@@ -43,7 +43,7 @@ describe('Drag and Drop with draggable data', () => {
   });
 
   it('Drag events should add/remove the draggable data to/from the DragDropService', (done: any) => {
-    let dragElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dragId');
+    const dragElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dragId');
 
     expect(dragdropService.dragData).not.toBeDefined();
 
@@ -59,7 +59,7 @@ describe('Drag and Drop with draggable data', () => {
   });
 
   it('Drag events should add/remove the expected classes to the target element', (done: any) => {
-    let dragElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dragId');
+    const dragElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dragId');
 
     expect(dragElem.classList.contains(config.onDragStartClass)).toEqual(false);
 
@@ -78,7 +78,7 @@ describe('Drag and Drop with draggable data', () => {
     container.dragEnabled = false;
     componentFixture.detectChanges();
 
-    let dragElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dragId');
+    const dragElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dragId');
 
     expect(dragdropService.dragData).not.toBeDefined();
     expect(dragElem.classList.contains(config.onDragStartClass)).toEqual(false);
@@ -92,8 +92,8 @@ describe('Drag and Drop with draggable data', () => {
   });
 
   it('Drop events should add/remove the expected classes to the target element', (done: any) => {
-    let dragElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dragId');
-    let dropElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dropId');
+    const dragElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dragId');
+    const dropElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dropId');
 
     expect(dropElem.classList.contains(config.onDragEnterClass)).toEqual(false);
     expect(dropElem.classList.contains(config.onDragOverClass)).toEqual(false);
@@ -130,8 +130,8 @@ describe('Drag and Drop with draggable data', () => {
   });
 
   it('Drop event should activate the onDropSuccess and onDragSuccess callbacks', (done: any) => {
-    let dragElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dragId');
-    let dropElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dropId');
+    const dragElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dragId');
+    const dropElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dropId');
 
     let dragCount: number = 0, dropCount: number = 0;
     container.drag.subscribe(
@@ -164,13 +164,13 @@ describe('Drag and Drop with draggable data', () => {
   });
 
   it('The onDropSuccess callback should receive the dragged data as paramenter', (done: any) => {
-    let dragData = {id: 1, name: 'Hello'};
+    const dragData = {id: 1, name: 'Hello'};
 
     container.dragData = dragData;
     componentFixture.detectChanges();
 
-    let dragElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dragId');
-    let dropElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dropId');
+    const dragElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dragId');
+    const dropElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dropId');
 
     container.drag.subscribe(($event: any) => {
       expect($event.dragData).toBe(dragData);

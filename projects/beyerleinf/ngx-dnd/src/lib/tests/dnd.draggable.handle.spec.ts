@@ -34,8 +34,8 @@ describe('Drag and Drop with handle', () => {
   });
 
   it('Drag start event should be activated if dragged by handle', (done: any) => {
-    let dragElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dragId');
-    let handleElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#handle');
+    const dragElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dragId');
+    const handleElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#handle');
 
     expect(dragdropService.dragData).not.toBeDefined();
 
@@ -56,8 +56,8 @@ describe('Drag and Drop with handle', () => {
     container.dragEnabled = false;
     componentFixture.detectChanges();
 
-    let dragElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dragId');
-    let nonHandleElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#non-handle');
+    const dragElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dragId');
+    const nonHandleElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#non-handle');
 
     expect(dragdropService.dragData).not.toBeDefined();
     expect(dragElem.classList.contains(config.onDragStartClass)).toEqual(false);
