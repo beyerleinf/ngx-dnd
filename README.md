@@ -1,12 +1,13 @@
-# Angular 2 Drag-and-Drop [![npm version](https://badge.fury.io/js/ng2-dnd.svg)](https://badge.fury.io/js/ng2-dnd) [![npm monthly downloads](https://img.shields.io/npm/dm/ng2-dnd.svg?style=flat-square)](https://www.npmjs.com/package/ng2-dnd)
-Angular 2 Drag-and-Drop without dependencies.
+# Angular 6+ Drag-And-Drop Library
 
-Follow me [![twitter](https://img.shields.io/twitter/follow/akopkokhyants.svg?style=social&label=%20akopkokhyants)](https://twitter.com/akopkokhyants) to be notified about new releases.
+Angular 6+ Drag-And-Drop without dependencies.
 
-[![Build Status](https://travis-ci.org/beyerleinf/ngx-dnd.svg?branch=master)](https://travis-ci.org/beyerleinf/ngx-dnd)
-[![Dependency Status](https://david-dm.org/beyerleinf/ngx-dnd.svg)](https://david-dm.org/beyerleinf/ngx-dnd)
-[![devDependency Status](https://david-dm.org/beyerleinf/ngx-dnd/dev-status.svg)](https://david-dm.org/beyerleinf/ngx-dnd#info=devDependencies)
-[![Known Vulnerabilities](https://snyk.io/test/github/beyerleinf/ngx-dnd/badge.svg)](https://snyk.io/test/github/beyerleinf/ngx-dnd)
+![Maintenance](https://img.shields.io/maintenance/yes/2018.svg?style=flat-square) [![license](https://img.shields.io/github/license/beyerleinf/ngx-dnd.svg?style=flat-square)](https://github.com/beyerleinf/ngx-dnd/blob/master/LICENSE.md) ![npm (scoped)](https://img.shields.io/npm/v/@beyerleinf/ngx-dnd.svg?style=flat-square) [![npm](https://img.shields.io/npm/dm/localeval.svg?style=flat-square)](https://www.npmjs.com/package/@beyerleinf/ngx-dnd)
+
+[![Travis](https://img.shields.io/travis/beyerleinf/ngx-dnd.svg?style=flat-square)](https://travis-ci.org/beyerleinf/ngx-dnd) [![David](https://img.shields.io/david/beyerleinf/ngx-dnd.svg?style=flat-square)](https://github.com/beyerleinf/ngx-dnd) [![David](https://img.shields.io/david/dev/beyerleinf/ngx-dnd.svg?style=flat-square)](![David](https://img.shields.io/david/beyerleinf/ngx-dnd.svg?style=flat-square)) [![Known Vulnerabilities](https://snyk.io/test/github/beyerleinf/ngx-dnd/badge.svg)](https://snyk.io/test/github/beyerleinf/ngx-dnd)
+
+[![Issue Stats (long form)](https://img.shields.io/issuestats/i/long/github/beyerleinf/ngx-dnd.svg?style=flat-square)](https://github.com/beyerleinf/ngx-dnd/issues) [![GitHub issues](https://img.shields.io/github/issues/beyerleinf/ngx-dnd.svg?style=flat-square)](https://github.com/beyerleinf/ngx-dnd/issues) [![GitHub pull requests](https://img.shields.io/github/issues-pr/beyerleinf/ngx-dnd.svg?style=flat-square)](https://github.com/beyerleinf/ngx-dnd/pulls) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/beyerleinf/ngx-dnd.svg?style=flat-square)
+
 
 _Some of these APIs and Components are not final and are subject to change!_
 
