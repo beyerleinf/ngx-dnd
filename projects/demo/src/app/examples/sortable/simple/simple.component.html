@@ -1,0 +1,26 @@
+<h4>Simple sortable</h4>
+<div class="row">
+  <div class="col-sm-3">
+    <div class="card bg-success">
+      <div class="card-header">
+        Favorite drinks
+      </div>
+      <div class="card-body">
+        <ul class="list-group" dnd-sortable-container [sortableData]="listOne">
+          <li *ngFor="let item of listOne; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">{{item}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        My prefences:
+        <br/>
+        <span *ngFor="let item of listOne; let i = index">{{i + 1}}) {{item}}
+          <br/>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

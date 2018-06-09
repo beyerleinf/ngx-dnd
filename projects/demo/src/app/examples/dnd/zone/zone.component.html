@@ -1,0 +1,43 @@
+<h4>Restricted Drag-and-Drop with zones</h4>
+<div class="row">
+  <div class="col-sm-3">
+    <div class="card bg-primary">
+      <div class="card-header">Available to drag</div>
+      <div class="card-body">
+        <div class="card" dnd-draggable [dragEnabled]="true" [dropZones]="['zone1']">
+          <div class="card-body">
+            <div>Drag Me</div>
+            <div>Zone 1 only</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card bg-success">
+      <div class="card-header">Available to drag</div>
+      <div class="card-body">
+        <div class="card" dnd-draggable [dragEnabled]="true" [dropZones]="['zone1', 'zone2']">
+          <div class="card-body">
+            <div>Drag Me</div>
+            <div>Zone 1 & 2</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div dnd-droppable class="card bg-info" [dropZones]="['zone1']" (onDropSuccess)="restrictedDrop1=$event">
+      <div class="card-header">Zone 1</div>
+      <div class="card-body">
+        <div *ngIf="restrictedDrop1">Item was dropped here</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div dnd-droppable class="card bg-warning" [dropZones]="['zone2']" (onDropSuccess)="restrictedDrop2=$event">
+      <div class="card-header">Zone 2</div>
+      <div class="card-body">
+        <div *ngIf="restrictedDrop2">Item was dropped here</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<h4>Drag-and-Drop - Shopping basket</h4>
+<div class="row">
+  <div class="col-sm-3">
+    <div class="card bg-success">
+      <div class="card-header">Available products</div>
+      <div class="card-body">
+        <div *ngFor="let product of availableProducts" class="card" dnd-draggable [dragEnabled]="product.quantity>0" [dragData]="product"
+          (onDragSuccess)="orderedProduct($event)" [dropZones]="['demo1']">
+          <div class="card-body">
+            <div [hidden]="product.quantity===0">{{product.name}} - \${{product.cost}}
+              <br>(available: {{product.quantity}})</div>
+            <div [hidden]="product.quantity>0">
+              <del>{{product.name}}</del>
+              <br>(NOT available)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div dnd-droppable (onDropSuccess)="addToBasket($event)" [dropZones]="['demo1']" class="card bg-info">
+      <div class="card-header">Shopping Basket
+        <br>(to pay: \${{totalCost()}})</div>
+      <div class="card-body">
+        <div *ngFor="let product of shoppingBasket" class="card">
+          <div class="card-body">
+            {{product.name}}
+            <br>(ordered: {{product.quantity}}
+            <br>cost: \${{product.cost * product.quantity}})
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

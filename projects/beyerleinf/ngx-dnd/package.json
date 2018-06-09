@@ -1,0 +1,19 @@
+{
+  "name": "@beyerleinf/ngx-dnd",
+  "version": "6.0.0-preview",
+  "peerDependencies": {
+    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
+    "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
+  },
+  "license": "MIT",
+  "author": "Fabian Beyerlein",
+  "private": false,
+  "bugs": {
+    "url": "https://github.com/beyerleinf/ngx-dnd/issues"
+  },
+  "homepage": "https://github.com/beyerleinf/ngx-dnd#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beyerleinf/ngx-dnd.git"
+  }
+}
