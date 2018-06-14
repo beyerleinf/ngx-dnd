@@ -1,7 +1,7 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {DragDropData} from '../../models';
 
-@Injectable({providedIn: 'root', useFactory: dragDropServiceFactory})
+@Injectable()
 export class DragDropService {
   allowedDropZones: string[] = [];
   onDragSuccessCallback: EventEmitter<DragDropData>;

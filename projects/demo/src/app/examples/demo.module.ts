@@ -19,7 +19,7 @@ import {SimpleComponent} from './sortable/simple/simple.component';
 @NgModule({
   imports: [CommonModule, FormsModule, DndModule.forRoot()],
   declarations: [
-    PrismComponent, SimpleDemoComponent, SimpleComponent, ZoneComponent, CustomDataComponent, CustomFunctionComponent,
+    SimpleDemoComponent, SimpleComponent, ZoneComponent, CustomDataComponent, CustomFunctionComponent,
     ShoppingBasketComponent, SimpleComponent, MultiComponent, RecycleMultiComponent, EmbeddedComponent,
     SimpleSortableCopyComponent, DndSimpleComponent
   ],

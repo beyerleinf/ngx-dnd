@@ -1,15 +1,12 @@
 import {ChangeDetectorRef} from '@angular/core';
 import {Directive, ElementRef, EventEmitter, Input, Output} from '@angular/core';
 
-import {DragDropConfig, DragImage} from '../config';
-import {DragDropData} from '../models';
-import {DragDropService} from '../service';
+import {AbstractComponent, AbstractHandleComponent} from './abstract.component';
+import {DragDropConfig, DragImage} from './dnd.config';
+import {DragDropData, DragDropService} from './dnd.service';
 
-import {AbstractDirective} from './abstract.directive';
-
-/* tslint:disable directive-selector no-output-on-prefix no-output-rename */
 @Directive({selector: '[dnd-draggable]'})
-export class DraggableDirective extends AbstractDirective {
+export class DraggableComponent extends AbstractComponent {
   @Input('dragEnabled')
   set draggable(value: boolean) {
     this.dragEnabled = !!value;
@@ -103,5 +100,15 @@ export class DraggableDirective extends AbstractDirective {
     this._elem.classList.remove(this._config.onDragStartClass);
     //
     this.onDragEnd.emit({dragData: this.dragData, mouseEvent: event});
+  }
+}
+
+
+@Directive({selector: '[dnd-draggable-handle]'})
+export class DraggableHandleComponent extends AbstractHandleComponent {
+  constructor(
+      elemRef: ElementRef, dragDropService: DragDropService, config: DragDropConfig, _Component: DraggableComponent,
+      cdr: ChangeDetectorRef) {
+    super(elemRef, dragDropService, config, _Component, cdr);
   }
 }
