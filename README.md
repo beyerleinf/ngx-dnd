@@ -22,7 +22,7 @@ npm install @beyerleinf/ngx-dnd --save
 ## Usage
 If you use SystemJS to load your files, you might have to update your config:
 
-```js
+``` ts
 System.config({
     map: {
         '@beyerleinf/ngx-dnd': 'node_modules/@beyerleinf/ngx-dnd/bundles/beyerleinf-ngx-dnd.umd.js'
@@ -70,7 +70,7 @@ export class SharedModule {
 
 #### 3. Use Drag-and-Drop operations with no code
 
-```js
+``` ts
 import {Component} from '@angular/core';
 
 @Component({
@@ -107,7 +107,7 @@ export class SimpleDndComponent {
 
 #### 4. Add handle to restrict draggable zone of component
 
-```js
+``` ts
 import {Component} from '@angular/core';
 
 @Component({
@@ -148,7 +148,7 @@ export class SimpleDndHandleComponent {
 #### 5. Restriction Drag-and-Drop operations with drop zones
 You can use property *dropZones* (actually an array) to specify in which place you would like to drop the draggable element:
 
-```js
+``` ts
 import {Component} from '@angular/core';
 
 @Component({
@@ -208,7 +208,7 @@ export class ZoneDndComponent {
 #### 6. Transfer custom data via Drag-and-Drop
 You can transfer data from draggable to droppable component via *dragData* property of Draggable component:
 
-```js
+``` ts
 import {Component} from '@angular/core';
 
 @Component({
@@ -254,7 +254,7 @@ For use-cases when a static set of `dropZone`s is not possible, a custom functio
 
 In the following example, we have two containers that only accept numbers that are multiples of a user-input base integer. `dropZone`s are not helpful here because they are static, whereas the user input is dynamic.
 
-```js
+``` ts
 import { Component } from '@angular/core';
 
 @Component({
@@ -336,7 +336,7 @@ export class CustomFunctionDndComponent {
 #### 8. Shopping basket with Drag-and-Drop
 Here is an example of shopping backet with products adding via drag and drop operation:
 
-```js
+``` ts
 import { Component } from '@angular/core';
 
 @Component({
@@ -422,7 +422,7 @@ class Product {
 #### 9. Simple sortable with Drag-and-Drop
 Here is an example of simple sortable of favorite drinks moving in container via drag and drop operation:
 
-```js
+``` ts
 import {Component} from '@angular/core';
 
 @Component({
@@ -461,7 +461,7 @@ export class SimpleSortableComponent {
 #### 10. Simple sortable with Drag-and-Drop handle
 Add handle to restict grip zone of sortable component.
 
-```js
+``` ts
 import {Component} from '@angular/core';
 
 @Component({
@@ -502,7 +502,7 @@ export class SimpleSortableHandleComponent {
 #### 11. Simple sortable With Drop into recycle bin
 Here is an example of multi list sortable of boxers moving in container and between containers via drag and drop operation:
 
-```js
+``` ts
 import {Component} from '@angular/core';
 
 @Component({
@@ -544,7 +544,7 @@ export class RecycleMultiSortableComponent {
 #### 12. Simple sortable With Drop into something, without delete it
 Here is an example of simple sortable list of items copying in target container:
 
-```js
+``` ts
 import {Component} from '@angular/core';
 
 @Component({
@@ -601,7 +601,7 @@ class Widget {
 #### 13. Multi list sortable between containers
 Here is an example of multi list sortable of boxers moving in container and between containers via drag and drop operation:
 
-```js
+``` ts
 import {Component} from '@angular/core';
 
 @Component({
@@ -674,7 +674,7 @@ class Widget {
 #### 14. Simple FormArray sortable with Drag-and-Drop
 Here is an example of simple sortable of favorite drinks moving in container via drag and drop operation but using FormArray instead of Array:
 
-```js
+``` ts
 import {Component} from '@angular/core';
 import {FormArray, FormControl} from '@angular/forms';
 
@@ -748,7 +748,7 @@ loadComponent($event){
 
 Since it is possible to drag and drop one or more files to a drop zone, you need to handle the incoming files.
 
-```js
+``` ts
 import {Component} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import {DND_PROVIDERS, DND_DIRECTIVES} from 'ng2-dnd/ng2-dnd';
@@ -827,6 +827,7 @@ export class AppComponent {
     }
   }
 }
+```
 
 # Credits
 - [Francesco Cina](https://github.com/ufoscout)
