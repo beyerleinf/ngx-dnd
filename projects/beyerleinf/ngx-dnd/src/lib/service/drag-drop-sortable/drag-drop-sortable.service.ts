@@ -4,30 +4,54 @@ import {DragDropConfig} from '../../config';
 import {SortableContainerDirective} from '../../directives';
 import {isPresent} from '../../util';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class DragDropSortableService {
+  /**
+   * The last elemet that was marked sortable.
+   *
+   * @private
+   * @memberof DragDropSortableService
+   */
+  private _element: HTMLElement;
+
   index: number;
+
   sortableContainer: SortableContainerDirective;
+
   isDragged: boolean;
 
-  private _elem: HTMLElement;
-  public get elem(): HTMLElement {
-    return this._elem;
+
+  /**
+   *Creates an instance of DragDropSortableService.
+   * @param config The DragDropConfig.
+   * @memberof DragDropSortableService
+   */
+  constructor(private config: DragDropConfig) {}
+
+  /**
+   * Gets the last element that was marked sortable.
+   *
+   * @readonly
+   * @memberof DragDropSortableService
+   */
+  get element(): HTMLElement {
+    return this._element;
   }
 
-  constructor(private _config: DragDropConfig) {}
-
-  markSortable(elem: HTMLElement) {
-    if (isPresent(this._elem)) {
-      this._elem.classList.remove(this._config.onSortableDragClass);
+  /**
+   * Assigns the `onSortableDragClass` to the given element.
+   *
+   * @param e The element to assign the CSS class to.
+   * @memberof DragDropSortableService
+   */
+  markSortable(e: HTMLElement): void {
+    if (isPresent(this._element)) {
+      this._element.classList.remove(this.config.onSortableDragClass);
     }
-    if (isPresent(elem)) {
-      this._elem = elem;
-      this._elem.classList.add(this._config.onSortableDragClass);
+
+    if (isPresent(e)) {
+      this._element = e;
+      this._element.classList.add(this.config.onSortableDragClass);
     }
   }
-}
-
-export function dragDropSortableServiceFactory(config: DragDropConfig): DragDropSortableService {
-  return new DragDropSortableService(config);
 }

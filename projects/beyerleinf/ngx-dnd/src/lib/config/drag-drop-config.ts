@@ -1,6 +1,9 @@
+import {Injectable} from '@angular/core';
+
 import {DataTransferEffect} from './data-transfer-effect';
 import {DragImage} from './drag-image';
 
+@Injectable({providedIn: 'root'})
 export class DragDropConfig {
   public onDragStartClass: string = 'dnd-drag-start';
   public onDragEnterClass: string = 'dnd-drag-enter';
