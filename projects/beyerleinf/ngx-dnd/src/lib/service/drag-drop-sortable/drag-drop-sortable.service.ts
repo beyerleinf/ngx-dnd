@@ -9,7 +9,6 @@ export class DragDropSortableService {
   /**
    * The last element that was marked sortable.
    *
-   * @private
    * @memberof DragDropSortableService
    */
   private _element: HTMLElement;
@@ -53,4 +52,8 @@ export class DragDropSortableService {
       this._element.classList.add(this.config.onSortableDragClass);
     }
   }
+}
+
+export function dragDropSortableServiceFactory(config: DragDropConfig): DragDropSortableService {
+  return new DragDropSortableService(config);
 }

@@ -170,7 +170,6 @@ export abstract class AbstractDirective {
   /**
    * Prevent the given events default action from being called and stops it from being propagated further.
    *
-   * @private
    * @memberof AbstractDirective
    */
   private preventAndStop(event: Event): void {
