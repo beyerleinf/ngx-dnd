@@ -7,7 +7,7 @@ import {isPresent} from '../../util';
 @Injectable({providedIn: 'root'})
 export class DragDropSortableService {
   /**
-   * The last elemet that was marked sortable.
+   * The last element that was marked sortable.
    *
    * @private
    * @memberof DragDropSortableService
@@ -19,7 +19,6 @@ export class DragDropSortableService {
   sortableContainer: SortableContainerDirective;
 
   isDragged: boolean;
-
 
   /**
    *Creates an instance of DragDropSortableService.

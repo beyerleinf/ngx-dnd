@@ -3,15 +3,15 @@ import {ChangeDetectorRef, Directive, ElementRef} from '@angular/core';
 import {DragDropConfig} from '../config';
 import {DragDropService} from '../service';
 
-import {AbstractHandleDirective} from './abstract-handle.directive';
+import {AbstractHandleDirective} from './abstract';
 import {SortableDirective} from './sortable.directive';
 
 /* tslint:disable directive-selector */
-@Directive({selector: '[dnd-sortable-handle]'})
+@Directive({selector: '[dnd-sortable-handle'})
 export class SortableHandleDirective extends AbstractHandleDirective {
   constructor(
-      elemRef: ElementRef, dragDropService: DragDropService, config: DragDropConfig, _Component: SortableDirective,
+      elementRef: ElementRef, dragDropService: DragDropService, config: DragDropConfig, directive: SortableDirective,
       cdr: ChangeDetectorRef) {
-    super(elemRef, dragDropService, config, _Component, cdr);
+    super(elementRef, dragDropService, config, directive, cdr);
   }
 }

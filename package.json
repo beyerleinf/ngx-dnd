@@ -63,6 +63,11 @@
     "tsickle": ">=0.29.0",
     "tslib": "^1.9.2",
     "tslint": "~5.10.0",
-    "typescript": "~2.9.2"
+    "typescript": "~2.7.2"
+  },
+  "greenkeeper": {
+    "ignore": [
+      "typescript"
+    ]
   }
 }

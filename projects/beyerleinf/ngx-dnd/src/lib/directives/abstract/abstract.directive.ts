@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, ElementRef, ViewRef} from '@angular/core';
+import {ChangeDetectorRef, ElementRef, Input, ViewRef} from '@angular/core';
 
 import {DragDropConfig, DragImage} from '../../config';
 import {DragDropService} from '../../service';
@@ -14,19 +14,19 @@ export abstract class AbstractDirective {
 
   private _dragEnabled: boolean = true;
 
-  dropEnabled: boolean = false;
+  @Input() dropEnabled: boolean = false;
 
-  effectAllowed: string;
+  @Input() effectAllowed: string;
 
-  effectCursor: string;
+  @Input() effectCursor: string;
 
-  dropZones: string[] = [];
+  @Input() dropZones: string[] = [];
 
-  allowDrop: (dropData: any) => boolean;
+  @Input() allowDrop: (dropData: any) => boolean;
 
-  dragImage: string|DragImage|Function;
+  @Input() dragImage: string|DragImage|Function;
 
-  cloneItem: boolean = false;
+  @Input() cloneItem: boolean = false;
 
   constructor(
       elementReference: ElementRef, public dragDropService: DragDropService, public config: DragDropConfig,
@@ -74,6 +74,7 @@ export abstract class AbstractDirective {
     return this._dragEnabled;
   }
 
+  @Input()
   set dragEnabled(value: boolean) {
     this._dragEnabled = value;
     this.element.draggable = value;
@@ -83,6 +84,7 @@ export abstract class AbstractDirective {
     return this._dragHandle;
   }
 
+  @Input()
   set dragHandle(value: HTMLElement) {
     this._dragHandle = value;
   }
