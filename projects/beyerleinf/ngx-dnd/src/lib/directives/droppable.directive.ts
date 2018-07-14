@@ -10,31 +10,6 @@ import {AbstractDirective} from './abstract';
 /* tslint:disable directive-selector no-output-on-prefix */
 @Directive({selector: '[dnd-droppable]'})
 export class DroppableDirective extends AbstractDirective {
-  @Input('dropEnabled')
-  set droppable(value: boolean) {
-    this.dropEnabled = !!value;
-  }
-
-  @Input('allowDrop')
-  set allowdrop(value: (dropData: any) => boolean) {
-    this.allowDrop = value;
-  }
-
-  @Input('dropZones')
-  set dropzones(value: Array<string>) {
-    this.dropZones = value;
-  }
-
-  @Input('effectAllowed')
-  set effectallowed(value: string) {
-    this.effectAllowed = value;
-  }
-
-  @Input('effectCursor')
-  set effectcursor(value: string) {
-    this.effectCursor = value;
-  }
-
   @Output() onDropSuccess: EventEmitter<DragDropData> = new EventEmitter<DragDropData>();
   @Output() onDragEnter: EventEmitter<DragDropData> = new EventEmitter<DragDropData>();
   @Output() onDragOver: EventEmitter<DragDropData> = new EventEmitter<DragDropData>();

@@ -7,9 +7,8 @@ import {isPresent} from '../../util';
 @Injectable({providedIn: 'root'})
 export class DragDropSortableService {
   /**
-   * The last elemet that was marked sortable.
+   * The last element that was marked sortable.
    *
-   * @private
    * @memberof DragDropSortableService
    */
   private _element: HTMLElement;
@@ -19,7 +18,6 @@ export class DragDropSortableService {
   sortableContainer: SortableContainerDirective;
 
   isDragged: boolean;
-
 
   /**
    *Creates an instance of DragDropSortableService.
@@ -54,4 +52,8 @@ export class DragDropSortableService {
       this._element.classList.add(this.config.onSortableDragClass);
     }
   }
+}
+
+export function dragDropSortableServiceFactory(config: DragDropConfig): DragDropSortableService {
+  return new DragDropSortableService(config);
 }

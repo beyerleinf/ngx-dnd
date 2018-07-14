@@ -1,0 +1,11 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "package.json",
+        "projects/beyerleinf/ngx-dnd/ng-package.json",
+        "projects/beyerleinf/ngx-dnd/package.json"
+      ]
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, ElementRef, ViewRef} from '@angular/core';
+import {ChangeDetectorRef, ElementRef, Input, ViewRef} from '@angular/core';
 
 import {DragDropConfig, DragImage} from '../../config';
 import {DragDropService} from '../../service';
@@ -14,19 +14,19 @@ export abstract class AbstractDirective {
 
   private _dragEnabled: boolean = true;
 
-  dropEnabled: boolean = false;
+  @Input() dropEnabled: boolean = false;
 
-  effectAllowed: string;
+  @Input() effectAllowed: string;
 
-  effectCursor: string;
+  @Input() effectCursor: string;
 
-  dropZones: string[] = [];
+  @Input() dropZones: string[] = [];
 
-  allowDrop: (dropData: any) => boolean;
+  @Input() allowDrop: (dropData: any) => boolean;
 
-  dragImage: string|DragImage|Function;
+  @Input() dragImage: string|DragImage|Function;
 
-  cloneItem: boolean = false;
+  @Input() cloneItem: boolean = false;
 
   constructor(
       elementReference: ElementRef, public dragDropService: DragDropService, public config: DragDropConfig,
@@ -57,7 +57,7 @@ export abstract class AbstractDirective {
 
     this.element.ondragstart = (event: DragEvent) => {
       if (isPresent(this.dragHandle)) {
-        if (this.dragHandle.contains(this.target as Element)) {
+        if (!this.dragHandle.contains(this.target as Element)) {
           event.preventDefault();
           return;
         }
@@ -68,12 +68,24 @@ export abstract class AbstractDirective {
       if (isPresent(event.dataTransfer)) {
       }
     };
+
+    this.element.ondragend = (event: Event) => {
+      if (this.element.parentElement && this.dragHelper) {
+        this.element.parentElement.removeChild(this.dragHelper);
+      }
+      // console.log('ondragend', event.target);
+      this.dragEnd(event);
+      // Restore style of dragged element
+      const cursorElem = (this._dragHandle) ? this._dragHandle : this.element;
+      cursorElem.style.cursor = this.defaultCursor;
+    };
   }
 
   get dragEnabled(): boolean {
     return this._dragEnabled;
   }
 
+  @Input()
   set dragEnabled(value: boolean) {
     this._dragEnabled = value;
     this.element.draggable = value;
@@ -112,9 +124,9 @@ export abstract class AbstractDirective {
       if (isPresent(event.preventDefault)) {
         event.preventDefault();
       }
-    }
 
-    this.dragOverCallback(event);
+      this.dragOverCallback(event);
+    }
   }
 
   private dragLeave(event: Event): void {
@@ -164,11 +176,9 @@ export abstract class AbstractDirective {
     return false;
   }
 
-
   /**
    * Prevent the given events default action from being called and stops it from being propagated further.
    *
-   * @private
    * @memberof AbstractDirective
    */
   private preventAndStop(event: Event): void {
@@ -181,15 +191,27 @@ export abstract class AbstractDirective {
     }
   }
 
-  dragEnterCallback(event: Event): void {}
+  dragEnterCallback(event: Event): void {
+    throw new Error('The abstract implementation should not be called');
+  }
 
-  dragOverCallback(event: Event): void {}
+  dragOverCallback(event: Event): void {
+    throw new Error('The abstract implementation should not be called');
+  }
 
-  dragLeaveCallback(event: Event): void {}
+  dragLeaveCallback(event: Event): void {
+    throw new Error('The abstract implementation should not be called');
+  }
 
-  dropCallback(event: Event): void {}
+  dropCallback(event: Event): void {
+    throw new Error('The abstract implementation should not be called');
+  }
 
-  dragStartCallback(event: Event): void {}
+  dragStartCallback(event: Event): void {
+    throw new Error('The abstract implementation should not be called');
+  }
 
-  dragEndCallback(event: Event): void {}
+  dragEndCallback(event: Event): void {
+    throw new Error('The abstract implementation should not be called');
+  }
 }

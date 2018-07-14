@@ -9,29 +9,7 @@ import {AbstractDirective} from './abstract';
 /* tslint:disable directive-selector no-output-on-prefix */
 @Directive({selector: '[dnd-draggable]'})
 export class DraggableDirective extends AbstractDirective {
-  @Input('dragEnabled')
-  set draggable(value: boolean) {
-    this.dragEnabled = !!value;
-  }
-
-  @Input('dropZones')
-  set dropzones(value: string[]) {
-    this.dropZones = value;
-  }
-
-  @Input('effectAllowed')
-  set effectallowed(value: string) {
-    this.effectAllowed = value;
-  }
-
-  @Input('effectCursor')
-  set effectcursor(value: string) {
-    this.effectCursor = value;
-  }
-
   @Input() dragData: any;
-  @Input() dragImage: string|DragImage|Function;
-  @Input() cloneItem: boolean;
 
   @Output() onDragStart: EventEmitter<DragDropData> = new EventEmitter();
   @Output() onDragEnd: EventEmitter<DragDropData> = new EventEmitter<DragDropData>();

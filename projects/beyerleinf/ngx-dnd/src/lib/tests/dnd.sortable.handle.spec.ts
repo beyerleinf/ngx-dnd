@@ -1,4 +1,4 @@
-import {ComponentFixture, inject, TestBed} from '@angular/core/testing';
+import {ComponentFixture, getTestBed, TestBed} from '@angular/core/testing';
 
 import {DragDropConfig} from '../config';
 import {SortableContainerDirective, SortableDirective, SortableHandleDirective} from '../directives';
@@ -7,9 +7,7 @@ import {DragDropService, DragDropSortableService} from '../service';
 import {Container6, triggerEvent} from './dnd-component.factory';
 
 describe('Sortable Drag and Drop with handle', () => {
-  let componentFixture: ComponentFixture<Container6>;
-  let dragdropService: DragDropService;
-  let config: DragDropConfig;
+  let fixture: ComponentFixture<Container6>;
   let container: Container6;
   let sortableService: DragDropSortableService;
 
@@ -18,42 +16,37 @@ describe('Sortable Drag and Drop with handle', () => {
       declarations: [SortableContainerDirective, SortableDirective, SortableHandleDirective, Container6],
       providers: [DragDropConfig, DragDropService, DragDropSortableService]
     });
-    TestBed.compileComponents();
+
+    fixture = TestBed.createComponent(Container6);
+    fixture.detectChanges();
+
+    sortableService = getTestBed().get(DragDropSortableService);
+
+    container = <Container6>fixture.componentInstance;
   });
 
-  beforeEach(inject(
-      [DragDropConfig, DragDropService, DragDropSortableService],
-      (c: DragDropConfig, dd: DragDropService, ds: DragDropSortableService) => {
-        dragdropService = dd;
-        config = c;
-        sortableService = ds;
-
-        componentFixture = TestBed.createComponent(Container6);
-        componentFixture.detectChanges();
-        container = <Container6>componentFixture.componentInstance;
-      }));
-
   it('should be defined', () => {
-    expect(componentFixture).toBeDefined();
+    expect(fixture).toBeDefined();
   });
 
   it('The elements of the list should be draggable by handle', () => {
     const values: Array<string> = ['one', 'two', 'three', 'four'];
 
     container.sortableList = values;
-    componentFixture.detectChanges();
+    fixture.detectChanges();
 
-    const ulElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('ul');
+    const ulElem: HTMLElement = fixture.elementRef.nativeElement.querySelector('ul');
 
-    expect(ulElem).toBeDefined();
-    expect(ulElem.children.length).toBe(values.length);
+    expect(ulElem).toBeDefined('A ul element should be defined');
+    expect(ulElem.children.length).toBe(values.length, `The ul element should have ${values.length} children`);
 
-    expect(sortableService.sortableContainer).not.toBeDefined();
-    expect(sortableService.index).not.toBeDefined();
+    expect(sortableService.sortableContainer)
+        .not.toBeDefined('sortableService.sortableContainer should not be defined');
+    expect(sortableService.index).not.toBeDefined('sortableService.index should not be defined');
 
     triggerEvent(<HTMLElement>ulElem.children[0].querySelector('.handle'), 'mousedown', 'MouseEvent');
     triggerEvent(<HTMLElement>ulElem.children[0], 'dragstart', 'MouseEvent');
-    componentFixture.detectChanges();
+    fixture.detectChanges();
     expect(sortableService.sortableContainer.sortableData).toBe(values);
     expect(sortableService.index).toBe(0);
   });
@@ -62,20 +55,23 @@ describe('Sortable Drag and Drop with handle', () => {
     const values: Array<string> = ['one', 'two', 'three', 'four'];
 
     container.sortableList = values;
-    componentFixture.detectChanges();
+    fixture.detectChanges();
 
-    const ulElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('ul');
+    const ulElem: HTMLElement = fixture.elementRef.nativeElement.querySelector('ul');
 
-    expect(ulElem).toBeDefined();
-    expect(ulElem.children.length).toBe(values.length);
+    expect(ulElem).toBeDefined('A ul element should be defined');
+    expect(ulElem.children.length).toBe(values.length, `The ul element should have ${values.length} children`);
 
-    expect(sortableService.sortableContainer).not.toBeDefined();
-    expect(sortableService.index).not.toBeDefined();
+    expect(sortableService.sortableContainer)
+        .not.toBeDefined('sortableService.sortableContainer should not be defined');
+    expect(sortableService.index).not.toBeDefined('sortableService.index should not be defined');
 
     triggerEvent(<HTMLElement>ulElem.children[0].querySelector('.non-handle'), 'mousedown', 'MouseEvent');
     triggerEvent(<HTMLElement>ulElem.children[0], 'dragstart', 'MouseEvent');
-    componentFixture.detectChanges();
-    expect(sortableService.sortableContainer).not.toBeDefined();
-    expect(sortableService.index).not.toBeDefined();
+    fixture.detectChanges();
+
+    expect(sortableService.sortableContainer)
+        .not.toBeDefined('sortableService.sortableContainer should not be defined');
+    expect(sortableService.index).not.toBeDefined('sortableService.index should not be defined');
   });
 });

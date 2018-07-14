@@ -8,3 +8,7 @@ export class DragDropService {
   dragData: any;
   isDragged: boolean;
 }
+
+export function dragDropServiceFactory(): DragDropService {
+  return new DragDropService();
+}

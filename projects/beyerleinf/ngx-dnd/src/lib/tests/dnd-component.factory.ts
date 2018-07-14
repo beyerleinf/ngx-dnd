@@ -29,33 +29,27 @@ export class Container {
   @Output() dropTwo: EventEmitter<any> = new EventEmitter<any>();
   @Output() dropOneTwo: EventEmitter<any> = new EventEmitter<any>();
 
-  // tslint:disable-next-line
-  private dragOneSuccessCallback($event: any) {
+  dragOneSuccessCallback($event: any) {
     this.dragOne.emit($event);
   }
 
-  // tslint:disable-next-line
-  private dragTwoSuccessCallback($event: any) {
+  dragTwoSuccessCallback($event: any) {
     this.dragOne.emit($event);
   }
 
-  // tslint:disable-next-line
-  private dragOneTwoSuccessCallback($event: any) {
+  dragOneTwoSuccessCallback($event: any) {
     this.dragOneTwo.emit($event);
   }
 
-  // tslint:disable-next-line
-  private dropOneSuccessCallback($event: any) {
+  dropOneSuccessCallback($event: any) {
     this.dropOne.emit($event);
   }
 
-  // tslint:disable-next-line
-  private dropTwoSuccessCallback($event: any) {
+  dropTwoSuccessCallback($event: any) {
     this.dropTwo.emit($event);
   }
 
-  // tslint:disable-next-line
-  private dropOneTwoSuccessCallback($event: any) {
+  dropOneTwoSuccessCallback($event: any) {
     this.dropOneTwo.emit($event);
   }
 }
