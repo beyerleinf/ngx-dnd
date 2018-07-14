@@ -1,4 +1,4 @@
-import {ComponentFixture, inject, TestBed} from '@angular/core/testing';
+import {ComponentFixture, getTestBed, TestBed} from '@angular/core/testing';
 
 import {DragDropConfig} from '../config';
 import {DraggableDirective, DroppableDirective} from '../directives';
@@ -7,8 +7,8 @@ import {DragDropService} from '../service';
 import {Container2, triggerEvent} from './dnd-component.factory';
 
 describe('Drag and Drop with draggable data', () => {
-  let componentFixture: ComponentFixture<Container2>;
-  let dragdropService: DragDropService;
+  let fixture: ComponentFixture<Container2>;
+  let dragDropService: DragDropService;
   let config: DragDropConfig;
   let container: Container2;
 
@@ -17,24 +17,22 @@ describe('Drag and Drop with draggable data', () => {
       declarations: [DraggableDirective, DroppableDirective, Container2],
       providers: [DragDropConfig, DragDropService]
     });
-    TestBed.compileComponents();
+
+    fixture = TestBed.createComponent(Container2);
+    fixture.detectChanges();
+
+    dragDropService = getTestBed().get(DragDropService);
+    config = getTestBed().get(DragDropConfig);
+
+    container = <Container2>fixture.componentInstance;
   });
 
-  beforeEach(inject([DragDropConfig, DragDropService], (c: DragDropConfig, dd: DragDropService) => {
-    dragdropService = dd;
-    config = c;
-
-    componentFixture = TestBed.createComponent(Container2);
-    componentFixture.detectChanges();
-    container = <Container2>componentFixture.componentInstance;
-  }));
-
   it('should be defined', () => {
-    expect(componentFixture).toBeDefined();
+    expect(fixture).toBeDefined();
   });
 
   it('It should add the "draggable" attribute', (done: any) => {
-    const dragElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dragId');
+    const dragElem: HTMLElement = fixture.elementRef.nativeElement.querySelector('#dragId');
 
     expect(dragElem).toBeDefined();
     expect(dragElem.attributes[<any>'draggable']).toBeTruthy();
@@ -43,95 +41,95 @@ describe('Drag and Drop with draggable data', () => {
   });
 
   it('Drag events should add/remove the draggable data to/from the DragDropService', (done: any) => {
-    const dragElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dragId');
+    const dragElem: HTMLElement = fixture.elementRef.nativeElement.querySelector('#dragId');
 
-    expect(dragdropService.dragData).not.toBeDefined();
+    expect(dragDropService.dragData).not.toBeDefined();
 
     triggerEvent(dragElem, 'dragstart', 'MouseEvent');
-    componentFixture.detectChanges();
-    expect(dragdropService.dragData).toBeDefined();
+    fixture.detectChanges();
+    expect(dragDropService.dragData).toBeDefined();
 
     triggerEvent(dragElem, 'dragend', 'MouseEvent');
-    componentFixture.detectChanges();
-    expect(dragdropService.dragData).toBeNull();
+    fixture.detectChanges();
+    expect(dragDropService.dragData).toBeNull();
 
     done();
   });
 
   it('Drag events should add/remove the expected classes to the target element', (done: any) => {
-    const dragElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dragId');
+    const dragElem: HTMLElement = fixture.elementRef.nativeElement.querySelector('#dragId');
 
-    expect(dragElem.classList.contains(config.onDragStartClass)).toEqual(false);
+    expect(dragElem.classList.contains(config.onDragStartClass)).toBeFalsy();
 
     triggerEvent(dragElem, 'dragstart', 'MouseEvent');
-    componentFixture.detectChanges();
-    expect(dragElem.classList.contains(config.onDragStartClass)).toEqual(true);
+    fixture.detectChanges();
+    expect(dragElem.classList.contains(config.onDragStartClass)).toBeTruthy();
 
     triggerEvent(dragElem, 'dragend', 'MouseEvent');
-    componentFixture.detectChanges();
-    expect(dragElem.classList.contains(config.onDragStartClass)).toEqual(false);
+    fixture.detectChanges();
+    expect(dragElem.classList.contains(config.onDragStartClass)).toBeFalsy();
 
     done();
   });
 
   it('Drag start event should not be activated if drag is not enabled', (done: any) => {
     container.dragEnabled = false;
-    componentFixture.detectChanges();
+    fixture.detectChanges();
 
-    const dragElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dragId');
+    const dragElem: HTMLElement = fixture.elementRef.nativeElement.querySelector('#dragId');
 
-    expect(dragdropService.dragData).not.toBeDefined();
-    expect(dragElem.classList.contains(config.onDragStartClass)).toEqual(false);
+    expect(dragDropService.dragData).not.toBeDefined();
+    expect(dragElem.classList.contains(config.onDragStartClass)).toBeFalsy();
 
     triggerEvent(dragElem, 'dragstart', 'MouseEvent');
-    componentFixture.detectChanges();
-    expect(dragdropService.dragData).not.toBeDefined();
-    expect(dragElem.classList.contains(config.onDragStartClass)).toEqual(false);
+    fixture.detectChanges();
+    expect(dragDropService.dragData).not.toBeDefined();
+    expect(dragElem.classList.contains(config.onDragStartClass)).toBeFalsy();
 
     done();
   });
 
   it('Drop events should add/remove the expected classes to the target element', (done: any) => {
-    const dragElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dragId');
-    const dropElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dropId');
+    const dragElem: HTMLElement = fixture.elementRef.nativeElement.querySelector('#dragId');
+    const dropElem: HTMLElement = fixture.elementRef.nativeElement.querySelector('#dropId');
 
-    expect(dropElem.classList.contains(config.onDragEnterClass)).toEqual(false);
-    expect(dropElem.classList.contains(config.onDragOverClass)).toEqual(false);
+    expect(dropElem.classList.contains(config.onDragEnterClass)).toBeFalsy();
+    expect(dropElem.classList.contains(config.onDragOverClass)).toBeFalsy();
 
     // The drop events should not work before a drag is started on an element with the correct drop-zone
     triggerEvent(dropElem, 'dragenter', 'MouseEvent');
-    componentFixture.detectChanges();
-    expect(dropElem.classList.contains(config.onDragEnterClass)).toEqual(false);
+    fixture.detectChanges();
+    expect(dropElem.classList.contains(config.onDragEnterClass)).toBeFalsy();
 
     triggerEvent(dragElem, 'dragstart', 'MouseEvent');
     triggerEvent(dropElem, 'dragenter', 'MouseEvent');
-    componentFixture.detectChanges();
-    expect(dropElem.classList.contains(config.onDragEnterClass)).toEqual(true);
-    expect(dropElem.classList.contains(config.onDragOverClass)).toEqual(false);
+    fixture.detectChanges();
+    expect(dropElem.classList.contains(config.onDragEnterClass)).toBeTruthy();
+    expect(dropElem.classList.contains(config.onDragOverClass)).toBeFalsy();
 
     triggerEvent(dropElem, 'dragover', 'MouseEvent');
-    componentFixture.detectChanges();
-    expect(dropElem.classList.contains(config.onDragEnterClass)).toEqual(true);
-    expect(dropElem.classList.contains(config.onDragOverClass)).toEqual(true);
+    fixture.detectChanges();
+    expect(dropElem.classList.contains(config.onDragEnterClass)).toBeTruthy();
+    expect(dropElem.classList.contains(config.onDragOverClass)).toBeTruthy();
 
     triggerEvent(dropElem, 'dragleave', 'MouseEvent');
-    componentFixture.detectChanges();
-    expect(dropElem.classList.contains(config.onDragEnterClass)).toEqual(false);
-    expect(dropElem.classList.contains(config.onDragOverClass)).toEqual(false);
+    fixture.detectChanges();
+    expect(dropElem.classList.contains(config.onDragEnterClass)).toBeFalsy();
+    expect(dropElem.classList.contains(config.onDragOverClass)).toBeFalsy();
 
     triggerEvent(dropElem, 'dragover', 'MouseEvent');
     triggerEvent(dropElem, 'dragenter', 'MouseEvent');
     triggerEvent(dropElem, 'drop', 'MouseEvent');
-    componentFixture.detectChanges();
-    expect(dropElem.classList.contains(config.onDragEnterClass)).toEqual(false);
-    expect(dropElem.classList.contains(config.onDragOverClass)).toEqual(false);
+    fixture.detectChanges();
+    expect(dropElem.classList.contains(config.onDragEnterClass)).toBeFalsy();
+    expect(dropElem.classList.contains(config.onDragOverClass)).toBeFalsy();
 
     done();
   });
 
   it('Drop event should activate the onDropSuccess and onDragSuccess callbacks', (done: any) => {
-    const dragElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dragId');
-    const dropElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dropId');
+    const dragElem: HTMLElement = fixture.elementRef.nativeElement.querySelector('#dragId');
+    const dropElem: HTMLElement = fixture.elementRef.nativeElement.querySelector('#dropId');
 
     let dragCount: number = 0, dropCount: number = 0;
     container.drag.subscribe(
@@ -158,19 +156,19 @@ describe('Drag and Drop with draggable data', () => {
     triggerEvent(dragElem, 'dragend', 'MouseEvent');
     triggerEvent(dragElem, 'dragstart', 'MouseEvent');
     triggerEvent(dropElem, 'drop', 'MouseEvent');
-    componentFixture.detectChanges();
+    fixture.detectChanges();
 
     done();
   });
 
-  it('The onDropSuccess callback should receive the dragged data as paramenter', (done: any) => {
+  it('The onDropSuccess callback should receive the dragged data as parameter', (done: any) => {
     const dragData = {id: 1, name: 'Hello'};
 
     container.dragData = dragData;
-    componentFixture.detectChanges();
+    fixture.detectChanges();
 
-    const dragElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dragId');
-    const dropElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('#dropId');
+    const dragElem: HTMLElement = fixture.elementRef.nativeElement.querySelector('#dragId');
+    const dropElem: HTMLElement = fixture.elementRef.nativeElement.querySelector('#dropId');
 
     container.drag.subscribe(($event: any) => {
       expect($event.dragData).toBe(dragData);
@@ -181,7 +179,7 @@ describe('Drag and Drop with draggable data', () => {
 
     triggerEvent(dragElem, 'dragstart', 'MouseEvent');
     triggerEvent(dropElem, 'drop', 'MouseEvent');
-    componentFixture.detectChanges();
+    fixture.detectChanges();
 
     done();
   });

@@ -1,4 +1,4 @@
-import {ComponentFixture, inject, TestBed} from '@angular/core/testing';
+import {ComponentFixture, getTestBed, TestBed} from '@angular/core/testing';
 
 import {DragDropConfig} from '../config';
 import {SortableContainerDirective, SortableDirective} from '../directives';
@@ -8,8 +8,6 @@ import {Container3, Container4, triggerEvent} from './dnd-component.factory';
 
 describe('Sortable Drag and Drop', () => {
   let componentFixture: ComponentFixture<Container3>;
-  let dragdropService: DragDropService;
-  let config: DragDropConfig;
   let container: Container3;
   let sortableService: DragDropSortableService;
 
@@ -18,20 +16,14 @@ describe('Sortable Drag and Drop', () => {
       declarations: [SortableContainerDirective, SortableDirective, Container3],
       providers: [DragDropConfig, DragDropService, DragDropSortableService]
     });
-    TestBed.compileComponents();
+
+    componentFixture = TestBed.createComponent(Container3);
+    componentFixture.detectChanges();
+
+    sortableService = getTestBed().get(DragDropSortableService);
+
+    container = <Container3>componentFixture.componentInstance;
   });
-
-  beforeEach(inject(
-      [DragDropConfig, DragDropService, DragDropSortableService],
-      (c: DragDropConfig, dd: DragDropService, ds: DragDropSortableService) => {
-        dragdropService = dd;
-        config = c;
-        sortableService = ds;
-
-        componentFixture = TestBed.createComponent(Container3);
-        componentFixture.detectChanges();
-        container = <Container3>componentFixture.componentInstance;
-      }));
 
   it('should be defined', () => {
     expect(componentFixture).toBeDefined();
@@ -108,30 +100,18 @@ describe('Sortable Drag and Drop', () => {
 
 describe('Multi List Sortable Drag and Drop', () => {
   let componentFixture: ComponentFixture<Container4>;
-  let dragdropService: DragDropService;
-  let config: DragDropConfig;
   let container: Container4;
-  let sortableService: DragDropSortableService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [SortableDirective, SortableContainerDirective, Container4],
       providers: [DragDropConfig, DragDropService, DragDropSortableService]
     });
-    TestBed.compileComponents();
+
+    componentFixture = TestBed.createComponent(Container4);
+    componentFixture.detectChanges();
+    container = <Container4>componentFixture.componentInstance;
   });
-
-  beforeEach(inject(
-      [DragDropConfig, DragDropService, DragDropSortableService],
-      (c: DragDropConfig, dd: DragDropService, ds: DragDropSortableService) => {
-        dragdropService = dd;
-        config = c;
-        sortableService = ds;
-
-        componentFixture = TestBed.createComponent(Container4);
-        componentFixture.detectChanges();
-        container = <Container4>componentFixture.componentInstance;
-      }));
 
   it('should be defined', () => {
     expect(componentFixture).toBeDefined();
