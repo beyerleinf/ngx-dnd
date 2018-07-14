@@ -7,7 +7,7 @@ import {AbstractDirective} from './abstract';
 import {SortableContainerDirective} from './sortable-container.directive';
 
 /* tslint:disable directive-selector no-output-on-prefix */
-@Directive({selector: '[dnd-sortable'})
+@Directive({selector: '[dnd-sortable]'})
 export class SortableDirective extends AbstractDirective {
   @Input() sortableIndex: number;
   @Input() dragData: any;
