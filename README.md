@@ -1,6 +1,6 @@
 # Angular 6+ Drag-And-Drop Library
 
-Angular 6+ Drag-And-Drop without dependencies.
+Angular 6+ Drag-And-Drop without dependencies. This is a forked & updated version of [ng2-dnd](https://github.com/akserg/ng2-dnd). 
 
 ![Maintenance](https://img.shields.io/maintenance/yes/2018.svg?style=flat-square) [![license](https://img.shields.io/github/license/beyerleinf/ngx-dnd.svg?style=flat-square)](https://github.com/beyerleinf/ngx-dnd/blob/master/LICENSE.md) ![npm (scoped)](https://img.shields.io/npm/v/@beyerleinf/ngx-dnd.svg?style=flat-square) [![npm](https://img.shields.io/npm/dm/localeval.svg?style=flat-square)](https://www.npmjs.com/package/@beyerleinf/ngx-dnd)
 
@@ -11,27 +11,24 @@ Angular 6+ Drag-And-Drop without dependencies.
 
 _Some of these APIs and Components are not final and are subject to change!_
 
+## Demo
+- Coming soon!
+
 ## Installation
 ```bash
 npm install @beyerleinf/ngx-dnd --save
 ```
 
-## Demo
-- Coming soon!
-
-## Usage
-If you use SystemJS to load your files, you might have to update your config:
-
-``` ts
-System.config({
-    map: {
-        '@beyerleinf/ngx-dnd': 'node_modules/@beyerleinf/ngx-dnd/bundles/beyerleinf-ngx-dnd.umd.js'
-    }
-});
-```
+## Configuration
 
 #### 1. Add the default styles
-- Import the `styles.css` into your web page from `node_modules/@beyerleinf/ngx-dnd/styles.css`
+- Import the `styles.css` into your web page from `node_modules/@beyerleinf/ngx-dnd/styles.css` into your **angular.json** configuration file stlyes array:
+```ts
+"styles": [
+           "src/styles.css",
+           "node_modules/@beyerleinf/ngx-dnd/styles.css"
+          ],
+```
 
 #### 2. Import the `DndModule`
 Import `DndModule.forRoot()` in the NgModule of your application. 
@@ -68,7 +65,22 @@ export class SharedModule {
 }
 ```
 
-#### 3. Use Drag-and-Drop operations with no code
+#### 3. SystemJS configuration
+Most users will use the Angular CLI and can skip this step, if however you are a SystemJS user, you can edit your configuration to include the ngx-dnd bundle by adding the following:
+
+``` ts
+System.config({
+    map: {
+        '@beyerleinf/ngx-dnd': 'node_modules/@beyerleinf/ngx-dnd/bundles/beyerleinf-ngx-dnd.umd.js'
+    }
+});
+```
+
+## Usage Examples
+
+Find below various usage examples, all elements can be created directly within the templates, adding function callbacks in the component code if you need to manipulate the data once it has been dragged/dropped.
+
+#### 1. Use Drag-and-Drop operations with no component code
 
 ``` ts
 import {Component} from '@angular/core';
@@ -105,7 +117,7 @@ export class SimpleDndComponent {
 }
 ```
 
-#### 4. Add handle to restrict draggable zone of component
+#### 2. Add handle to restrict draggable zone of component
 
 ``` ts
 import {Component} from '@angular/core';
@@ -145,7 +157,7 @@ export class SimpleDndHandleComponent {
 }
 ```
 
-#### 5. Restriction Drag-and-Drop operations with drop zones
+#### 3. Restriction Drag-and-Drop operations with drop zones
 You can use property *dropZones* (actually an array) to specify in which place you would like to drop the draggable element:
 
 ``` ts
@@ -205,7 +217,7 @@ export class ZoneDndComponent {
 }
 ```
 
-#### 6. Transfer custom data via Drag-and-Drop
+#### 4. Transfer custom data via Drag-and-Drop
 You can transfer data from draggable to droppable component via *dragData* property of Draggable component:
 
 ``` ts
@@ -249,7 +261,7 @@ export class CustomDataDndComponent {
 }
 ```
 
-#### 7. Use a custom function to determine where dropping is allowed
+#### 5. Use a custom function to determine where dropping is allowed
 For use-cases when a static set of `dropZone`s is not possible, a custom function can be used to dynamically determine whether an item can be dropped or not. To achieve that, set the `allowDrop` property to this boolean function.
 
 In the following example, we have two containers that only accept numbers that are multiples of a user-input base integer. `dropZone`s are not helpful here because they are static, whereas the user input is dynamic.
@@ -333,7 +345,7 @@ export class CustomFunctionDndComponent {
 }
 ```
 
-#### 8. Shopping basket with Drag-and-Drop
+#### 6. Shopping basket with Drag-and-Drop
 Here is an example of shopping backet with products adding via drag and drop operation:
 
 ``` ts
@@ -419,7 +431,7 @@ class Product {
 }
 ```
 
-#### 9. Simple sortable with Drag-and-Drop
+#### 7. Simple sortable with Drag-and-Drop
 Here is an example of simple sortable of favorite drinks moving in container via drag and drop operation:
 
 ``` ts
@@ -458,7 +470,7 @@ export class SimpleSortableComponent {
 ```
 
 
-#### 10. Simple sortable with Drag-and-Drop handle
+#### 8. Simple sortable with Drag-and-Drop handle
 Add handle to restict grip zone of sortable component.
 
 ``` ts
@@ -499,7 +511,7 @@ export class SimpleSortableHandleComponent {
 }
 ```
 
-#### 11. Simple sortable With Drop into recycle bin
+#### 9. Simple sortable With Drop into recycle bin
 Here is an example of multi list sortable of boxers moving in container and between containers via drag and drop operation:
 
 ``` ts
@@ -541,7 +553,7 @@ export class RecycleMultiSortableComponent {
 }
 ```
 
-#### 12. Simple sortable With Drop into something, without delete it
+#### 10. Simple sortable With Drop into something, without delete it
 Here is an example of simple sortable list of items copying in target container:
 
 ``` ts
@@ -598,7 +610,7 @@ class Widget {
 }
 ```
 
-#### 13. Multi list sortable between containers
+#### 11. Multi list sortable between containers
 Here is an example of multi list sortable of boxers moving in container and between containers via drag and drop operation:
 
 ``` ts
@@ -671,7 +683,7 @@ class Widget {
 }
 ```
 
-#### 14. Simple FormArray sortable with Drag-and-Drop
+#### 12. Simple FormArray sortable with Drag-and-Drop
 Here is an example of simple sortable of favorite drinks moving in container via drag and drop operation but using FormArray instead of Array:
 
 ``` ts
@@ -751,7 +763,7 @@ Since it is possible to drag and drop one or more files to a drop zone, you need
 ``` ts
 import {Component} from '@angular/core';
 import {Http, Headers} from '@angular/http';
-import {DND_PROVIDERS, DND_DIRECTIVES} from 'ng2-dnd/ng2-dnd';
+import {DND_PROVIDERS, DND_DIRECTIVES} from '@beyerleinf/ngx-dnd';
 import {bootstrap} from '@angular/platform-browser-dynamic';
 
 bootstrap(AppComponent, [
@@ -830,6 +842,7 @@ export class AppComponent {
 ```
 
 # Credits
+- [Sergey Akopkokhyants](https://github.com/akserg)
 - [Francesco Cina](https://github.com/ufoscout)
 - [Valerii Kuznetsov](https://github.com/solival)
 - [Shane Oborn](https://github.com/obosha)
