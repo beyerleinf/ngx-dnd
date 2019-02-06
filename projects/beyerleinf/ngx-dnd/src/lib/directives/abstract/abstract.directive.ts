@@ -191,27 +191,10 @@ export abstract class AbstractDirective {
     }
   }
 
-  dragEnterCallback(event: Event): void {
-    throw new Error('The abstract implementation should not be called');
-  }
-
-  dragOverCallback(event: Event): void {
-    throw new Error('The abstract implementation should not be called');
-  }
-
-  dragLeaveCallback(event: Event): void {
-    throw new Error('The abstract implementation should not be called');
-  }
-
-  dropCallback(event: Event): void {
-    throw new Error('The abstract implementation should not be called');
-  }
-
-  dragStartCallback(event: Event): void {
-    throw new Error('The abstract implementation should not be called');
-  }
-
-  dragEndCallback(event: Event): void {
-    throw new Error('The abstract implementation should not be called');
-  }
+  dragEnterCallback?(event: Event): void;
+  dragOverCallback?(event: Event): void;
+  dragLeaveCallback?(event: Event): void;
+  dropCallback?(event: Event): void;
+  dragStartCallback?(event: Event): void;
+  dragEndCallback?(event: Event): void;
 }
