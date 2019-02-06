@@ -11,7 +11,7 @@ import {AbstractDirective} from './abstract';
 export class DraggableDirective extends AbstractDirective {
   @Input() dragData: any;
 
-  @Output() onDragStart: EventEmitter<DragDropData> = new EventEmitter();
+  @Output() onDragStart: EventEmitter<DragDropData> = new EventEmitter<DragDropData>();
   @Output() onDragEnd: EventEmitter<DragDropData> = new EventEmitter<DragDropData>();
   @Output() onDragSuccess: EventEmitter<any> = new EventEmitter<any>();
 
