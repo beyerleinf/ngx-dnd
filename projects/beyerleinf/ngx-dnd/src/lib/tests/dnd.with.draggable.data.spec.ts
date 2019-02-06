@@ -158,6 +158,7 @@ describe('Drag and Drop with draggable data', () => {
     triggerEvent(dropElem, 'drop', 'MouseEvent');
     fixture.detectChanges();
 
+    expect().nothing();
     done();
   });
 
