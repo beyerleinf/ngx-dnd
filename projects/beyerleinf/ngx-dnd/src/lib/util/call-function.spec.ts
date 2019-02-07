@@ -2,14 +2,14 @@ import {callFunction} from './call-function';
 
 describe('callFunction', () => {
   it('should call the function', () => {
-    const spy = spyOn(console, 'log');
-    callFunction(console.log);
+    const spy = jasmine.createSpy();
+    callFunction(spy);
     expect(spy).toHaveBeenCalled();
   });
 
   it('should call the function with parameters', () => {
-    const spy = spyOn(console, 'log');
-    callFunction(console.log, 'Hello', 'from', 'the', 'test');
+    const spy = jasmine.createSpy();
+    callFunction(spy, 'Hello', 'from', 'the', 'test');
     expect(spy).toHaveBeenCalledWith(['Hello', 'from', 'the', 'test']);
   });
 });
