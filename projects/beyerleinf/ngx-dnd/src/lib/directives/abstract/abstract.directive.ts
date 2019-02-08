@@ -191,10 +191,27 @@ export abstract class AbstractDirective {
     }
   }
 
-  dragEnterCallback?(event: Event): void;
-  dragOverCallback?(event: Event): void;
-  dragLeaveCallback?(event: Event): void;
-  dropCallback?(event: Event): void;
-  dragStartCallback?(event: Event): void;
-  dragEndCallback?(event: Event): void;
+  dragEnterCallback(event: Event): void {
+    /* noop */
+  }
+
+  dragOverCallback(event: Event): void {
+    /* noop */
+  }
+
+  dragLeaveCallback(event: Event): void {
+    /* noop */
+  }
+
+  dropCallback(event: Event): void {
+    /* noop */
+  }
+
+  dragStartCallback(event: Event): void {
+    /* noop */
+  }
+
+  dragEndCallback(event: Event): void {
+    /* noop */
+  }
 }
