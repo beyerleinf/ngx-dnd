@@ -12,7 +12,13 @@ Angular 6+ Drag-And-Drop without dependencies. This is a forked & updated versio
 _Some of these APIs and Components are not final and are subject to change!_
 
 ## Demo
-- Coming soon!
+* Coming soon!
+
+## Versions
+
+|@beyerleinf/ngx-dnd Version|Angular Version|
+|---|---|
+|6.* / @v6|Angular 6|
 
 ## Installation
 ```bash
@@ -22,12 +28,24 @@ npm install @beyerleinf/ngx-dnd --save
 ## Configuration
 
 #### 1. Add the default styles
-- Import the `styles.css` into your web page from `node_modules/@beyerleinf/ngx-dnd/styles.css` into your **angular.json** configuration file stlyes array:
-```ts
+
+##### Import through `angular.json`
+
+Add the `styles.css` to your `angular.json`.
+``` json
 "styles": [
-           "src/styles.css",
-           "node_modules/@beyerleinf/ngx-dnd/styles.css"
-          ],
+  "...",
+  "node_modules/@beyerleinf/ngx-dnd/styles.css",
+  "..."
+]
+```
+
+##### Import through your `styles.[scss|less|css]`
+
+Use the `@import` to import the @beyerleinf/ngx-dnd styles.
+
+``` css
+@import "~@beyerleinf/ngx-dnd/styles.css"
 ```
 
 #### 2. Import the `DndModule`
