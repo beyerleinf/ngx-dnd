@@ -18,7 +18,8 @@ _Some of these APIs and Components are not final and are subject to change!_
 
 |@beyerleinf/ngx-dnd Version|Angular Version|
 |---|---|
-|6.* / @v6|Angular 6|
+|6.* / @ng6|Angular 6|
+|7.* / @ng7|Angular 7|
 
 ## Installation
 ```bash

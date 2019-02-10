@@ -10,7 +10,7 @@
     "lint:demo": "ng lint demo",
     "test": "npm run test.dnd",
     "test.dnd": "ng test @beyerleinf/ngx-dnd --code-coverage",
-    "build": "npm run build.dnd && npm run build.demo",
+    "build": "npm run build:dnd && npm run build.demo",
     "build:dnd": "ng build @beyerleinf/ngx-dnd --configuration=production && npm run copy-styles && npm run copy-readme && npm run copy-license && npm run copy-changelog",
     "build:demo": "ng build demo ---configuration=production",
     "codecov": "codecov -f coverage/*.json",
@@ -18,7 +18,7 @@
     "copy-readme": "cp README.md ./dist/lib/",
     "copy-license": "cp LICENSE.md ./dist/lib/",
     "copy-changelog": "cp ./projects/beyerleinf/ngx-dnd/CHANGELOG.md ./dist/lib",
-    "publish:dnd": "npm run build.dnd && npm publish dist/lib --access public",
+    "publish:dnd": "npm run build:dnd && npm publish dist/lib --access public",
     "doc:dnd": "npx compodoc -p ./projects/beyerleinf/ngx-dnd/tsconfig.lib.json"
   },
   "private": false,
