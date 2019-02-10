@@ -1,29 +1,50 @@
 import {Component} from '@angular/core';
 
-class Product {
-  constructor(public name: string, public quantity: number, public cost: number) {}
+interface Product {
+  name: string;
+  quantity: number;
+  price: number;
 }
 
-
-@Component({selector: 'demo-shopping-basket', templateUrl: './shopping-basket.component.html'})
+@Component({
+  selector: 'demo-shopping-basket',
+  templateUrl: './shopping-basket.component.html',
+})
 export class ShoppingBasketComponent {
-  availableProducts: Array<Product> = [];
-  shoppingBasket: Array<Product> = [];
+  availableProducts: Product[] = [
+    {
+      name: 'Blue Shoes',
+      quantity: 3,
+      price: 34.99,
+    },
+    {
+      name: 'Good Jacket',
+      quantity: 1,
+      price: 90,
+    },
+    {
+      name: 'Red Shirt',
+      quantity: 5,
+      price: 12.59,
+    },
+    {
+      name: 'Blue Jeans',
+      quantity: 4,
+      price: 59.95,
+    },
+  ];
 
-  constructor() {
-    this.availableProducts.push(new Product('Blue Shoes', 3, 35));
-    this.availableProducts.push(new Product('Good Jacket', 1, 90));
-    this.availableProducts.push(new Product('Red Shirt', 5, 12));
-    this.availableProducts.push(new Product('Blue Jeans', 4, 60));
-  }
+  shoppingBasket: Product[] = [];
+
+  constructor() {}
 
   orderedProduct($event: any) {
-    const orderedProduct: Product = $event.dragData;
+    const orderedProduct = $event.dragData as Product;
     orderedProduct.quantity--;
   }
 
   addToBasket($event: any) {
-    const newProduct: Product = $event.dragData;
+    const newProduct = $event.dragData as Product;
     for (const product of this.shoppingBasket) {
       if (product.name === newProduct.name) {
         product.quantity++;
@@ -31,16 +52,16 @@ export class ShoppingBasketComponent {
       }
     }
 
-    this.shoppingBasket.push(new Product(newProduct.name, 1, newProduct.cost));
+    this.shoppingBasket.push({name: newProduct.name, quantity: 1, price: newProduct.price});
     this.shoppingBasket.sort((a: Product, b: Product) => {
       return a.name.localeCompare(b.name);
     });
   }
 
-  totalCost(): number {
+  getTotal(): number {
     let cost: number = 0;
     for (const product of this.shoppingBasket) {
-      cost += (product.cost * product.quantity);
+      cost += (product.price * product.quantity);
     }
 
     return cost;

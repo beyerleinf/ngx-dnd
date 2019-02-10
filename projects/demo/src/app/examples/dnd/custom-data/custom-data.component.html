@@ -1,23 +1,27 @@
-<h4>Transfer custom data in Drag-and-Drop</h4>
 <div class="row">
   <div class="col-sm-3">
-    <div class="card bg-success">
+    <div class="card mb-5">
       <div class="card-header">Available to drag</div>
       <div class="card-body">
         <div class="card" dnd-draggable [dragEnabled]="true" [dragData]="transferData">
           <div class="card-body">
             <div>Drag Me</div>
-            <div>{{transferData | json}}</div>
+            <br>
+            <pre>{{transferData | json}}</pre>
           </div>
         </div>
       </div>
     </div>
   </div>
   <div class="col-sm-3">
-    <div dnd-droppable class="card bg-info" (onDropSuccess)="transferDataSuccess($event)">
-      <div class="card-header">Place to drop (Items:{{receivedData.length}})</div>
+    <div dnd-droppable class="card mb-5" (onDropSuccess)="transferDataSuccess($event)">
+      <div class="card-header">Place to drop</div>
       <div class="card-body">
-        <div [hidden]="!receivedData.length > 0" *ngFor="let data of receivedData">{{data | json}}</div>
+        <div class="card mb-3" *ngFor="let data of receivedData">
+          <div class="card-body">
+            <pre>{{data | json}}</pre>
+          </div>
+        </div>
       </div>
     </div>
   </div>

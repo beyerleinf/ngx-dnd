@@ -1,32 +1,38 @@
-<h4>Drag-and-Drop - Shopping basket</h4>
 <div class="row">
   <div class="col-sm-3">
-    <div class="card bg-success">
+    <div class="card  mb-5">
       <div class="card-header">Available products</div>
       <div class="card-body">
-        <div *ngFor="let product of availableProducts" class="card" dnd-draggable [dragEnabled]="product.quantity>0" [dragData]="product"
-          (onDragSuccess)="orderedProduct($event)" [dropZones]="['demo1']">
+        <div class="card bg-primary text-white" *ngFor="let product of availableProducts; last as isLast" [class.mb-3]="!isLast"
+          [class.bg-danger]="product.quantity === 0" dnd-draggable
+          [dragEnabled]="product.quantity>0" [dragData]="product" (onDragSuccess)="orderedProduct($event)"
+          [dropZones]="['demo1']">
           <div class="card-body">
-            <div [hidden]="product.quantity===0">{{product.name}} - \${{product.cost}}
-              <br>(available: {{product.quantity}})</div>
-            <div [hidden]="product.quantity>0">
-              <del>{{product.name}}</del>
-              <br>(NOT available)</div>
+            <h5 *ngIf="product.quantity > 0">{{product.name}}</h5>
+            <h5 *ngIf="product.quantity === 0"><del>{{product.name}}</del></h5>
+            <p class="card-text">
+              <span *ngIf="product.quantity > 0">{{product.price | currency:'USD'}}</span><br
+                *ngIf="product.quantity > 0">
+              <span *ngIf="product.quantity > 0">Available: {{product.quantity}}</span>
+              <span *ngIf="product.quantity === 0">SOLD OUT</span>
+            </p>
           </div>
         </div>
       </div>
     </div>
   </div>
   <div class="col-sm-3">
-    <div dnd-droppable (onDropSuccess)="addToBasket($event)" [dropZones]="['demo1']" class="card bg-info">
+    <div class="card mb-5" dnd-droppable (onDropSuccess)="addToBasket($event)" [dropZones]="['demo1']">
       <div class="card-header">Shopping Basket
-        <br>(to pay: \${{totalCost()}})</div>
+        <br>Total: {{getTotal() | currency:'USD'}}</div>
       <div class="card-body">
-        <div *ngFor="let product of shoppingBasket" class="card">
+        <div class="card mb-3" *ngFor="let product of shoppingBasket; last as isLast" [class.mb-3]="!isLast">
           <div class="card-body">
-            {{product.name}}
-            <br>(ordered: {{product.quantity}}
-            <br>cost: \${{product.cost * product.quantity}})
+            <h5 class="card-title">{{product.name}}</h5>
+            <p class="card-text">
+              Amount: {{product.quantity}}<br>
+              {{(product.price * product.quantity) | currency:'USD'}}
+            </p>
           </div>
         </div>
       </div>

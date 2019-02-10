@@ -1,28 +1,25 @@
-<h4>Use a custom function to determine where dropping is allowed</h4>
 <div class="row">
   <div class="col-sm-3">
-    <div class="card bg-success">
+    <div class="card mb-5">
       <div class="card-header">Available to drag</div>
       <div class="card-body">
-        <div class="card" dnd-draggable [dragData]="6">
+        <div class="card mb-3" dnd-draggable [dragData]="6">
           <div class="card-body">dragData = 6</div>
         </div>
-        <div class="card" dnd-draggable [dragData]="10">
+        <div class="card mb-3" dnd-draggable [dragData]="10">
           <div class="card-body">dragData = 10</div>
         </div>
-        <div class="card" dnd-draggable [dragData]="30">
+        <div class="card mb-3" dnd-draggable [dragData]="30">
           <div class="card-body">dragData = 30</div>
         </div>
       </div>
     </div>
   </div>
   <div class="col-sm-6">
-    <pre>allowDropFunction(baseInteger: any): any {{ '{' }}
-  return (dragData: any) => dragData % baseInteger === 0;
-{{ '}' }}</pre>
     <div class="row">
       <div class="col-sm-6">
-        <div dnd-droppable class="card bg-info" [allowDrop]="allowDropFunction(box1Integer)" (onDropSuccess)="addToBox1Items($event)">
+        <div dnd-droppable class="card mb-5" [allowDrop]="allowDropFunction(box1Integer)"
+          (onDropSuccess)="addToBox1Items($event)">
           <div class="card-header">
             Multiples of
             <input type="number" [(ngModel)]="box1Integer" style="width: 4em"> only
@@ -33,7 +30,8 @@
         </div>
       </div>
       <div class="col-sm-6">
-        <div dnd-droppable class="card bg-warning" [allowDrop]="allowDropFunction(box2Integer)" (onDropSuccess)="addToBox2Items($event)">
+        <div dnd-droppable class="card mb-5" [allowDrop]="allowDropFunction(box2Integer)"
+          (onDropSuccess)="addToBox2Items($event)">
           <div class="card-header">
             Multiples of
             <input type="number" [(ngModel)]="box2Integer" style="width: 4em"> only
