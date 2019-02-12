@@ -1,8 +1,9 @@
 import {ComponentFixture, getTestBed, TestBed} from '@angular/core/testing';
 
-import {DragDropConfig} from '../config';
-import {DraggableDirective, DroppableDirective} from '../directives';
-import {DragDropService} from '../service';
+import {DragDropConfig} from '../config/drag-drop-config';
+import {DraggableDirective} from '../directives/draggable.directive';
+import {DroppableDirective} from '../directives/droppable.directive';
+import {DragDropService} from '../service/drag-drop/drag-drop.service';
 
 import {Container2, triggerEvent} from './dnd-component.factory';
 

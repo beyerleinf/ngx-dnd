@@ -1,5 +1,5 @@
 import {EventEmitter, Injectable} from '@angular/core';
-import {DragDropData} from '../../models';
+import {DragDropData} from '../../models/drag-drop-data.model';
 
 @Injectable({providedIn: 'root'})
 export class DragDropService {
@@ -7,8 +7,4 @@ export class DragDropService {
   onDragSuccessCallback: EventEmitter<DragDropData>;
   dragData: any;
   isDragged: boolean;
-}
-
-export function dragDropServiceFactory(): DragDropService {
-  return new DragDropService();
 }

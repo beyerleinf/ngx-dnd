@@ -5,7 +5,9 @@ import {DndModule} from '@beyerleinf/ngx-dnd';
 
 import {SharedModule} from '../shared/shared.module';
 
+import {CustomDataDemoComponent} from './dnd/custom-data/custom-data-demo.component';
 import {CustomDataComponent} from './dnd/custom-data/custom-data.component';
+import {CustomFunctionDemoComponent} from './dnd/custom-function/custom-function-demo.component';
 import {CustomFunctionComponent} from './dnd/custom-function/custom-function.component';
 import {BasketDemoComponent} from './dnd/shopping-basket/basket-demo.component';
 import {ShoppingBasketComponent} from './dnd/shopping-basket/shopping-basket.component';
@@ -18,8 +20,6 @@ import {MultiComponent} from './sortable/multi/multi.component';
 import {RecycleMultiComponent} from './sortable/recycle-multi/recycle-multi.component';
 import {SimpleSortableCopyComponent} from './sortable/simple-sortable-copy/simple-sortable-copy.component';
 import {SimpleComponent} from './sortable/simple/simple.component';
-import { CustomFunctionDemoComponent } from './dnd/custom-function/custom-function-demo.component';
-import { CustomDataDemoComponent } from './dnd/custom-data/custom-data-demo.component';
 
 
 
@@ -27,7 +27,7 @@ import { CustomDataDemoComponent } from './dnd/custom-data/custom-data-demo.comp
   imports: [
     CommonModule,
     FormsModule,
-    DndModule.forRoot(),
+    DndModule,
     SharedModule,
   ],
   declarations: [
@@ -66,5 +66,4 @@ import { CustomDataDemoComponent } from './dnd/custom-data/custom-data-demo.comp
     BasketDemoComponent,
   ]
 })
-export class DemoDndModule {
-}
+export class DemoDndModule {}

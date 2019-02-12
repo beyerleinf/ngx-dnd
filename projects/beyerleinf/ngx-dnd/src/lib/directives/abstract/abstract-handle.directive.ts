@@ -1,7 +1,8 @@
-import {ChangeDetectorRef, ElementRef} from '@angular/core';
+import {ElementRef} from '@angular/core';
 
-import {DragDropConfig} from '../../config';
-import {DragDropService} from '../../service';
+import {DragDropConfig} from '../../config/drag-drop-config';
+import {DragDropService} from '../../service/drag-drop/drag-drop.service';
+
 import {AbstractDirective} from './abstract.directive';
 
 export abstract class AbstractHandleDirective {
@@ -9,7 +10,7 @@ export abstract class AbstractHandleDirective {
 
   constructor(
       elementReference: ElementRef, public dragDropService: DragDropService, public config: DragDropConfig,
-      private directive: AbstractDirective, private cdr: ChangeDetectorRef) {
+      private directive: AbstractDirective) {
     this.element = elementReference.nativeElement;
     this.directive.dragHandle = this.element;
   }

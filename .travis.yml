@@ -14,8 +14,8 @@ before_install:
 install:
 - npm install 
 script:
-- npm run lint.all
-- npm run build.dnd
-- npm run test.dnd
+- npm run lint:all
+- npm run build:dnd
+- npm run test:dnd
 after_success:
 - npm run codecov

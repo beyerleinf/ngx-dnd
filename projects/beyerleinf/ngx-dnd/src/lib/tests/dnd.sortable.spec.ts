@@ -1,8 +1,10 @@
 import {ComponentFixture, getTestBed, TestBed} from '@angular/core/testing';
 
-import {DragDropConfig} from '../config';
-import {SortableContainerDirective, SortableDirective} from '../directives';
-import {DragDropService, DragDropSortableService} from '../service';
+import {DragDropConfig} from '../config/drag-drop-config';
+import {SortableContainerDirective} from '../directives/sortable-container.directive';
+import {SortableDirective} from '../directives/sortable.directive';
+import {DragDropSortableService} from '../service/drag-drop-sortable/drag-drop-sortable.service';
+import {DragDropService} from '../service/drag-drop/drag-drop.service';
 
 import {Container3, Container4, triggerEvent} from './dnd-component.factory';
 
