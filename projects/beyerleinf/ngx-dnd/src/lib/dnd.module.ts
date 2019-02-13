@@ -1,14 +1,12 @@
-import {ModuleWithProviders, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 
-import {DragDropConfig} from './config';
-import {DraggableDirective, DraggableHandleDirective, DroppableDirective} from './directives';
-import {SortableContainerDirective, SortableDirective, SortableHandleDirective} from './directives';
-import {DragDropService, dragDropServiceFactory, DragDropSortableService, dragDropSortableServiceFactory} from './service';
+import {DraggableHandleDirective} from './directives/draggable-handle.directive';
+import {DraggableDirective} from './directives/draggable.directive';
+import {DroppableDirective} from './directives/droppable.directive';
+import {SortableContainerDirective} from './directives/sortable-container.directive';
+import {SortableHandleDirective} from './directives/sortable-handle.directive';
+import {SortableDirective} from './directives/sortable.directive';
 
-export let providers = [
-  DragDropConfig, {provide: DragDropService, useFactory: dragDropServiceFactory},
-  {provide: DragDropSortableService, useFactory: dragDropSortableServiceFactory, deps: [DragDropConfig]}
-];
 
 @NgModule({
   declarations: [
@@ -29,8 +27,4 @@ export let providers = [
   ],
 
 })
-export class DndModule {
-  static forRoot(): ModuleWithProviders {
-    return {ngModule: DndModule, providers: providers};
-  }
-}
+export class DndModule {}

@@ -1,11 +1,11 @@
-import {ChangeDetectorRef, Directive, ElementRef, EventEmitter, Input, Output} from '@angular/core';
+import {ChangeDetectorRef, Directive, ElementRef, EventEmitter, Output} from '@angular/core';
 
-import {DragDropConfig} from '../config';
-import {DragDropData} from '../models';
-import {DragDropService} from '../service';
+import {DragDropConfig} from '../config/drag-drop-config';
+import {DragDropData} from '../models/drag-drop-data.model';
+import {DragDropService} from '../service/drag-drop/drag-drop.service';
 import {isPresent} from '../util';
 
-import {AbstractDirective} from './abstract';
+import {AbstractDirective} from './abstract/abstract.directive';
 
 /* tslint:disable directive-selector no-output-on-prefix */
 @Directive({selector: '[dnd-droppable]'})

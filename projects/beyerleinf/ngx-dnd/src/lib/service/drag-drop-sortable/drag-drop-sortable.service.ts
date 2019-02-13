@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 
-import {DragDropConfig} from '../../config';
-import {SortableContainerDirective} from '../../directives';
+import {DragDropConfig} from '../../config/drag-drop-config';
+import {SortableContainerDirective} from '../../directives/sortable-container.directive';
 import {isPresent} from '../../util';
 
 @Injectable({providedIn: 'root'})
@@ -52,8 +52,4 @@ export class DragDropSortableService {
       this._element.classList.add(this.config.onSortableDragClass);
     }
   }
-}
-
-export function dragDropSortableServiceFactory(config: DragDropConfig): DragDropSortableService {
-  return new DragDropSortableService(config);
 }
