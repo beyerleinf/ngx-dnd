@@ -9,7 +9,7 @@
     "lint:dnd": "ng lint @beyerleinf/ngx-dnd",
     "lint:demo": "ng lint demo",
     "test": "npm run test:dnd",
-    "test.dnd": "ng test @beyerleinf/ngx-dnd --code-coverage",
+    "test:dnd": "ng test @beyerleinf/ngx-dnd --code-coverage",
     "build": "npm run build:dnd && npm run build:demo",
     "build:dnd": "ng build @beyerleinf/ngx-dnd --configuration=production && npm run copy-styles && npm run copy-readme && npm run copy-license && npm run copy-changelog",
     "build:demo": "ng build demo ---configuration=production",
