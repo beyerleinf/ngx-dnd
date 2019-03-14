@@ -1,9 +1,9 @@
-import {ChangeDetectorRef, Directive, ElementRef} from '@angular/core';
+import {Directive, ElementRef} from '@angular/core';
 
-import {DragDropConfig} from '../config';
-import {DragDropService} from '../service';
+import {DragDropConfig} from '../config/drag-drop-config';
+import {DragDropService} from '../service/drag-drop/drag-drop.service';
 
-import {AbstractHandleDirective} from './abstract';
+import {AbstractHandleDirective} from './abstract/abstract-handle.directive';
 import {DraggableDirective} from './draggable.directive';
 
 /* tslint:disable directive-selector */
@@ -11,7 +11,7 @@ import {DraggableDirective} from './draggable.directive';
 export class DraggableHandleDirective extends AbstractHandleDirective {
   constructor(
       elementReference: ElementRef, dragDropService: DragDropService, config: DragDropConfig,
-      directive: DraggableDirective, cdr: ChangeDetectorRef) {
-    super(elementReference, dragDropService, config, directive, cdr);
+      directive: DraggableDirective) {
+    super(elementReference, dragDropService, config, directive);
   }
 }

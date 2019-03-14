@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="7.1.0"></a>
+# [7.1.0](https://github.com/beyerleinf/ngx-dnd/compare/v7.0.0...v7.1.0) (2019-02-12)
+
+
+### Bug Fixes
+
+* Removed barrels and old DI stuff ([ea62445](https://github.com/beyerleinf/ngx-dnd/commit/ea62445))
+
+
+
 <a name="7.0.0"></a>
 # [7.0.0](https://github.com/beyerleinf/ngx-dnd/compare/v6.0.1...v7.0.0) (2019-02-10)
 

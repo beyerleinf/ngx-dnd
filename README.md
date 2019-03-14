@@ -61,7 +61,7 @@ import {DndModule} from '@beyerleinf/ngx-dnd';
 @NgModule({
     imports: [
         BrowserModule,
-        DndModule.forRoot()
+        DndModule,
     ],
     bootstrap: [AppComponent]
 })

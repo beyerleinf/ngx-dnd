@@ -1,11 +1,12 @@
 import {ChangeDetectorRef, Directive, ElementRef, Input} from '@angular/core';
 import {FormArray} from '@angular/forms';
 
-import {DragDropConfig} from '../config';
-import {DragDropService, DragDropSortableService} from '../service';
+import {DragDropConfig} from '../config/drag-drop-config';
+import {DragDropSortableService} from '../service/drag-drop-sortable/drag-drop-sortable.service';
+import {DragDropService} from '../service/drag-drop/drag-drop.service';
 import {SortableArrayHandler, SortableFormArrayHandler} from '../util';
 
-import {AbstractDirective} from './abstract';
+import {AbstractDirective} from './abstract/abstract.directive';
 
 /* tslint:disable directive-selector */
 @Directive({selector: '[dnd-sortable-container]'})

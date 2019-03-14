@@ -15,7 +15,7 @@ install:
 - npm install 
 script:
 - npm run lint
-- npm run build.dnd
-- npm run test.dnd
+- npm run build:dnd
+- npm run test:dnd
 after_success:
 - npm run codecov

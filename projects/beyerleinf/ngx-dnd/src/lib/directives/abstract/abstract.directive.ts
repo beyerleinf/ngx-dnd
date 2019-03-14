@@ -1,7 +1,8 @@
 import {ChangeDetectorRef, ElementRef, Input, ViewRef} from '@angular/core';
 
-import {DragDropConfig, DragImage} from '../../config';
-import {DragDropService} from '../../service';
+import {DragDropConfig} from '../../config/drag-drop-config';
+import {DragImage} from '../../config/drag-image';
+import {DragDropService} from '../../service/drag-drop/drag-drop.service';
 import {isPresent} from '../../util';
 
 export abstract class AbstractDirective {
