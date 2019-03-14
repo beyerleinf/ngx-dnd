@@ -22,11 +22,12 @@ export class DraggableDirective extends AbstractDirective {
     this.dragEnabled = true;
   }
 
-  dragStartCallback(): void {
+  dragStartCallback(event: MouseEvent): void {
     this.dragDropService.isDragged = true;
     this.dragDropService.dragData = this.dragData;
     this.dragDropService.onDragSuccessCallback = this.onDragSuccess;
     this.element.classList.add(this.config.onDragStartClass);
+    this.onDragStart.emit({dragData: this.dragData, mouseEvent: event});
   }
 
   dragEndCallback(event: MouseEvent): void {
