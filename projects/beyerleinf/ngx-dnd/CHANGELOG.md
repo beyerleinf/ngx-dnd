@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.1](https://github.com/beyerleinf/ngx-dnd/compare/v8.0.0...v8.0.1) (2019-06-09)
+
+
+
 ## [8.0.0](https://github.com/beyerleinf/ngx-dnd/compare/v7.1.1...v8.0.0) (2019-06-09)
 
 ### BREAKING CHANGES
