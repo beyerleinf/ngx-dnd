@@ -3,19 +3,17 @@ addons:
   firefox: latest
   chrome: stable
 os:
-- linux
+  - linux
 language: node_js
 node_js:
-- '8'
+  - '8'
 before_install:
-- npm set progress false
-- export DISPLAY=:99.0
-- sh -e /etc/init.d/xvfb start
+  - npm set progress false
 install:
-- npm install 
+  - npm install
 script:
-- npm run lint
-- npm run build:dnd
-- npm run test:dnd
+  - npm run lint
+  - npm run build:dnd
+  - npm run test:dnd
 after_success:
-- npm run codecov
+  - npm run codecov

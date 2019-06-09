@@ -5,10 +5,21 @@
       <div class="card-header">
         Available boxers
       </div>
-      <div class="card-body" dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="listBoxers">
+      <div
+        class="card-body"
+        dnd-sortable-container
+        [dropZones]="['boxers-zone']"
+        [sortableData]="listBoxers"
+      >
         <ul class="list-group">
-          <li *ngFor="let item of listBoxers; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">
-            {{item}}</li>
+          <li
+            *ngFor="let item of listBoxers; let i = index"
+            class="list-group-item"
+            dnd-sortable
+            [sortableIndex]="i"
+          >
+            {{ item }}
+          </li>
         </ul>
       </div>
     </div>
@@ -18,10 +29,21 @@
       <div class="card-header">
         First Team
       </div>
-      <div class="card-body" dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="listTeamOne">
+      <div
+        class="card-body"
+        dnd-sortable-container
+        [dropZones]="['boxers-zone']"
+        [sortableData]="listTeamOne"
+      >
         <ul class="list-group">
-          <li *ngFor="let item of listTeamOne; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">
-            {{item}}</li>
+          <li
+            *ngFor="let item of listTeamOne; let i = index"
+            class="list-group-item"
+            dnd-sortable
+            [sortableIndex]="i"
+          >
+            {{ item }}
+          </li>
         </ul>
       </div>
     </div>
@@ -31,10 +53,21 @@
       <div class="card-header">
         Second Team
       </div>
-      <div class="card-body" dnd-sortable-container [dropZones]="['not-boxers-zone']" [sortableData]="listTeamTwo">
+      <div
+        class="card-body"
+        dnd-sortable-container
+        [dropZones]="['boxers-zone']"
+        [sortableData]="listTeamTwo"
+      >
         <ul class="list-group">
-          <li *ngFor="let item of listTeamTwo; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">
-            {{item}}</li>
+          <li
+            *ngFor="let item of listTeamTwo; let i = index"
+            class="list-group-item"
+            dnd-sortable
+            [sortableIndex]="i"
+          >
+            {{ item }}
+          </li>
         </ul>
       </div>
     </div>
