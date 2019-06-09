@@ -18,6 +18,7 @@
   },
   "scripts": {
     "release": "standard-version",
-    "prepublish": "cp CHANGELOG.md ../../../dist/lib"
+    "prepublish": "cp CHANGELOG.md ../../../dist/lib",
+    "postinstall": "node postinstall.js"
   }
 }
