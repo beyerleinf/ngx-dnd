@@ -6,28 +6,24 @@ module.exports = function(config) {
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
-      require('karma-jasmine'),
-      require('karma-chrome-launcher'),
-      require('karma-firefox-launcher'),
-      require('karma-jasmine-html-reporter'),
-      require('karma-spec-reporter'),
-      require('karma-coverage-istanbul-reporter'),
-      require('@angular-devkit/build-angular/plugins/karma'),
+      require('karma-jasmine'), require('karma-chrome-launcher'), require('karma-firefox-launcher'),
+      require('karma-jasmine-html-reporter'), require('karma-coverage-istanbul-reporter'),
+      require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
-      clearContext: false, // leave Jasmine Spec Runner output visible in browser
+      clearContext: false  // leave Jasmine Spec Runner output visible in browser
     },
     coverageIstanbulReporter: {
       dir: require('path').join(__dirname, '../../../coverage'),
       reports: ['html', 'json'],
-      fixWebpackSourcePaths: true,
+      fixWebpackSourcePaths: true
     },
-    reporters: ['spec', 'kjhtml'],
+    reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['ChromeHeadless', 'FirefoxHeadless'],
-    singleRun: true,
+    browsers: ['Chrome', 'Firefox'],
+    singleRun: true
   });
 };

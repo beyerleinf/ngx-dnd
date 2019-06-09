@@ -2,8 +2,8 @@
   "name": "@beyerleinf/ngx-dnd",
   "version": "7.1.1",
   "peerDependencies": {
-    "@angular/common": ">=8.0.0 <9.0.0",
-    "@angular/core": ">=8.0.0 <9.0.0"
+    "@angular/common": ">=7.0.0 <8.0.0",
+    "@angular/core": ">=7.0.0 <8.0.0"
   },
   "license": "MIT",
   "author": "Fabian Beyerlein",
@@ -18,7 +18,6 @@
   },
   "scripts": {
     "release": "standard-version",
-    "prepublish": "cp CHANGELOG.md ../../../dist/lib",
-    "postinstall": "echo \"\""
+    "prepublish": "cp CHANGELOG.md ../../../dist/lib"
   }
 }
