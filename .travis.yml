@@ -9,6 +9,7 @@ node_js:
   - '12'
 before_install:
   - npm set progress false
+  - export DISPLAY=:99.0
 install:
   - npm install
 script:
