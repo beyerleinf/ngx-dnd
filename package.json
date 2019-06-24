@@ -30,7 +30,7 @@
     "@angular/router": "^8.0.0",
     "core-js": "^2.6.3",
     "highlight.js": "^9.14.2",
-    "ngx-bootstrap": "^3.2.0",
+    "ngx-bootstrap": "^5.0.0",
     "ngx-highlightjs": "^3.0.1",
     "rxjs": "^6.5.2",
     "zone.js": "~0.9.1"
