@@ -15,7 +15,7 @@
     "copy-styles": "cp ./projects/beyerleinf/ngx-dnd/styles.css ./dist/lib/",
     "copy-readme": "cp README.md ./dist/lib/",
     "copy-license": "cp LICENSE.md ./dist/lib/",
-    "publish:dnd": "npm run build.dnd && npm publish dist/lib --access public",
+    "publish:dnd": "npm run build:dnd && npm publish dist/lib --access public",
     "doc:dnd": "npx compodoc -p ./projects/beyerleinf/ngx-dnd/tsconfig.lib.json"
   },
   "private": false,
