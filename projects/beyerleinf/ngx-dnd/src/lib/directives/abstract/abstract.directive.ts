@@ -1,9 +1,9 @@
-import {ChangeDetectorRef, ElementRef, Input, ViewRef} from '@angular/core';
+import { ChangeDetectorRef, ElementRef, Input, ViewRef } from '@angular/core';
 
-import {DragDropConfig} from '../../config/drag-drop-config';
-import {DragImage} from '../../config/drag-image';
-import {DragDropService} from '../../service/drag-drop/drag-drop.service';
-import {isPresent} from '../../util';
+import { DragDropConfig } from '../../config/drag-drop-config';
+import { DragImage } from '../../config/drag-image';
+import { DragDropService } from '../../service/drag-drop/drag-drop.service';
+import { isPresent } from '../../util';
 
 export abstract class AbstractDirective {
   element: HTMLElement;
@@ -25,13 +25,16 @@ export abstract class AbstractDirective {
 
   @Input() allowDrop: (dropData: any) => boolean;
 
-  @Input() dragImage: string|DragImage|Function;
+  @Input() dragImage: string | DragImage | Function;
 
   @Input() cloneItem: boolean = false;
 
   constructor(
-      elementReference: ElementRef, public dragDropService: DragDropService, public config: DragDropConfig,
-      private cdr: ChangeDetectorRef) {
+    elementReference: ElementRef,
+    public dragDropService: DragDropService,
+    public config: DragDropConfig,
+    private cdr: ChangeDetectorRef
+  ) {
     this.defaultCursor = this.config.defaultCursor;
     this.element = elementReference.nativeElement;
     this.element.style.cursor = this.defaultCursor;
@@ -67,6 +70,8 @@ export abstract class AbstractDirective {
       this.dragStart(event);
 
       if (isPresent(event.dataTransfer)) {
+        // Required so that this whole thing works in Firefox at all
+        event.dataTransfer.setData('text', '');
       }
     };
 
@@ -77,7 +82,7 @@ export abstract class AbstractDirective {
       // console.log('ondragend', event.target);
       this.dragEnd(event);
       // Restore style of dragged element
-      const cursorElem = (this._dragHandle) ? this._dragHandle : this.element;
+      const cursorElem = this._dragHandle ? this._dragHandle : this.element;
       cursorElem.style.cursor = this.defaultCursor;
     };
   }
@@ -99,7 +104,6 @@ export abstract class AbstractDirective {
   set dragHandle(value: HTMLElement) {
     this._dragHandle = value;
   }
-
 
   /**
    * Run change detection manually to fix an issue in Safari.
@@ -158,12 +162,19 @@ export abstract class AbstractDirective {
   }
 
   private isDropAllowed(event: any): boolean {
-    if ((this.dragDropService.isDragged || (event.dataTransfer && event.dataTransfer.files)) && this.dropEnabled) {
+    if (
+      (this.dragDropService.isDragged ||
+        (event.dataTransfer && event.dataTransfer.files)) &&
+      this.dropEnabled
+    ) {
       if (isPresent(this.allowDrop)) {
         return this.allowDrop(this.dragDropService.dragData);
       }
 
-      if (this.dropZones.length === 0 && this.dragDropService.allowedDropZones.length === 0) {
+      if (
+        this.dropZones.length === 0 &&
+        this.dragDropService.allowedDropZones.length === 0
+      ) {
         return true;
       }
 
