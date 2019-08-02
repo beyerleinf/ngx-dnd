@@ -1,4 +1,4 @@
-import {callFunction} from './call-function';
+import { callFunction } from './call-function';
 
 describe('callFunction', () => {
   it('should call the function', () => {

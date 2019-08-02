@@ -1,23 +1,39 @@
-import {ChangeDetectorRef, Directive, ElementRef, EventEmitter, Input, Output} from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Directive,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 
-import {DragDropConfig} from '../config/drag-drop-config';
-import {DragDropData} from '../models/drag-drop-data.model';
-import {DragDropService} from '../service/drag-drop/drag-drop.service';
-import {isPresent} from '../util';
+import { DragDropConfig } from '../config/drag-drop-config';
+import { DragDropData } from '../models/drag-drop-data.model';
+import { DragDropService } from '../service/drag-drop/drag-drop.service';
+import { isPresent } from '../util';
 
-import {AbstractDirective} from './abstract/abstract.directive';
+import { AbstractDirective } from './abstract/abstract.directive';
 
 /* tslint:disable directive-selector no-output-on-prefix */
-@Directive({selector: '[dnd-droppable]'})
+@Directive({ selector: '[dnd-droppable]' })
 export class DroppableDirective extends AbstractDirective {
-  @Output() onDropSuccess: EventEmitter<DragDropData> = new EventEmitter<DragDropData>();
-  @Output() onDragEnter: EventEmitter<DragDropData> = new EventEmitter<DragDropData>();
-  @Output() onDragOver: EventEmitter<DragDropData> = new EventEmitter<DragDropData>();
-  @Output() onDragLeave: EventEmitter<DragDropData> = new EventEmitter<DragDropData>();
+  @Output() onDropSuccess: EventEmitter<DragDropData>;
+  @Output() onDragEnter: EventEmitter<DragDropData>;
+  @Output() onDragOver: EventEmitter<DragDropData>;
+  @Output() onDragLeave: EventEmitter<DragDropData>;
 
   constructor(
-      elementReference: ElementRef, dragDropService: DragDropService, config: DragDropConfig, cdr: ChangeDetectorRef) {
+    elementReference: ElementRef,
+    dragDropService: DragDropService,
+    config: DragDropConfig,
+    cdr: ChangeDetectorRef
+  ) {
     super(elementReference, dragDropService, config, cdr);
+
+    this.onDropSuccess = new EventEmitter<DragDropData>();
+    this.onDragEnter = new EventEmitter<DragDropData>();
+    this.onDragOver = new EventEmitter<DragDropData>();
+    this.onDragLeave = new EventEmitter<DragDropData>();
 
     this.dropEnabled = true;
   }
@@ -25,14 +41,20 @@ export class DroppableDirective extends AbstractDirective {
   dragEnterCallback(event: MouseEvent): void {
     if (this.dragDropService.isDragged) {
       this.element.classList.add(this.config.onDragEnterClass);
-      this.onDragEnter.emit({dragData: this.dragDropService.dragData, mouseEvent: event});
+      this.onDragEnter.emit({
+        dragData: this.dragDropService.dragData,
+        mouseEvent: event,
+      });
     }
   }
 
   dragOverCallback(event: MouseEvent): void {
     if (this.dragDropService.isDragged) {
-      this.element.classList.add((this.config.onDragOverClass));
-      this.onDragOver.emit({dragData: this.dragDropService.dragData, mouseEvent: event});
+      this.element.classList.add(this.config.onDragOverClass);
+      this.onDragOver.emit({
+        dragData: this.dragDropService.dragData,
+        mouseEvent: event,
+      });
     }
   }
 
@@ -40,18 +62,30 @@ export class DroppableDirective extends AbstractDirective {
     if (this.dragDropService.isDragged) {
       this.element.classList.remove(this.config.onDragOverClass);
       this.element.classList.remove(this.config.onDragEnterClass);
-      this.onDragLeave.emit({dragData: this.dragDropService.dragData, mouseEvent: event});
+      this.onDragLeave.emit({
+        dragData: this.dragDropService.dragData,
+        mouseEvent: event,
+      });
     }
   }
 
   dropCallback(event: MouseEvent): void {
     const dataTransfer = (event as any).dataTransfer;
 
-    if (this.dragDropService.isDragged || (isPresent(dataTransfer) && isPresent(dataTransfer.files))) {
-      this.onDropSuccess.emit({dragData: this.dragDropService.dragData, mouseEvent: event});
+    if (
+      this.dragDropService.isDragged ||
+      (isPresent(dataTransfer) && isPresent(dataTransfer.files))
+    ) {
+      this.onDropSuccess.emit({
+        dragData: this.dragDropService.dragData,
+        mouseEvent: event,
+      });
 
       if (isPresent(this.dragDropService.onDragSuccessCallback)) {
-        this.dragDropService.onDragSuccessCallback.emit({dragData: this.dragDropService.dragData, mouseEvent: event});
+        this.dragDropService.onDragSuccessCallback.emit({
+          dragData: this.dragDropService.dragData,
+          mouseEvent: event,
+        });
       }
 
       this.element.classList.remove(this.config.onDragOverClass);

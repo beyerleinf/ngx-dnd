@@ -1,12 +1,12 @@
-import {ComponentFixture, getTestBed, TestBed} from '@angular/core/testing';
+import { ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
 
-import {DragDropConfig} from '../config/drag-drop-config';
-import {SortableContainerDirective} from '../directives/sortable-container.directive';
-import {SortableDirective} from '../directives/sortable.directive';
-import {DragDropSortableService} from '../service/drag-drop-sortable/drag-drop-sortable.service';
-import {DragDropService} from '../service/drag-drop/drag-drop.service';
+import { DragDropConfig } from '../config/drag-drop-config';
+import { SortableContainerDirective } from '../directives/sortable-container.directive';
+import { SortableDirective } from '../directives/sortable.directive';
+import { DragDropSortableService } from '../service/drag-drop-sortable/drag-drop-sortable.service';
+import { DragDropService } from '../service/drag-drop/drag-drop.service';
 
-import {Container3, Container4, triggerEvent} from './dnd-component.factory';
+import { Container3, Container4, triggerEvent } from './dnd-component.factory';
 
 describe('Sortable Drag and Drop', () => {
   let componentFixture: ComponentFixture<Container3>;
@@ -16,7 +16,7 @@ describe('Sortable Drag and Drop', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [SortableContainerDirective, SortableDirective, Container3],
-      providers: [DragDropConfig, DragDropService, DragDropSortableService]
+      providers: [DragDropConfig, DragDropService, DragDropSortableService],
     });
 
     componentFixture = TestBed.createComponent(Container3);
@@ -32,12 +32,21 @@ describe('Sortable Drag and Drop', () => {
   });
 
   it('The elements of the list should be draggable', () => {
-    const values: Array<string> = ['one', 'two', 'three', 'four', 'five', 'six'];
+    const values: Array<string> = [
+      'one',
+      'two',
+      'three',
+      'four',
+      'five',
+      'six',
+    ];
 
     container.sortableList = values;
     componentFixture.detectChanges();
 
-    const ulElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('ul');
+    const ulElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector(
+      'ul'
+    );
     expect(ulElem).toBeDefined();
     expect(ulElem.children.length).toBe(values.length);
 
@@ -53,7 +62,9 @@ describe('Sortable Drag and Drop', () => {
     container.sortableList = values;
     componentFixture.detectChanges();
 
-    const ulElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('ul');
+    const ulElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector(
+      'ul'
+    );
     expect(ulElem).toBeDefined();
     expect(ulElem.children.length).toBe(values.length);
 
@@ -76,13 +87,15 @@ describe('Sortable Drag and Drop', () => {
   it('It should work with arbitrary objects', () => {
     const elemOne: HTMLDivElement = document.createElement('div');
     const elemTwo = 'elemTwo';
-    const elemThree = {'key': 'value'};
+    const elemThree = { key: 'value' };
     const values: Array<any> = [elemOne, elemTwo, elemThree];
 
     container.sortableList = values;
     componentFixture.detectChanges();
 
-    const ulElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('ul');
+    const ulElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector(
+      'ul'
+    );
     expect(ulElem).toBeDefined();
     expect(ulElem.children.length).toBe(values.length);
 
@@ -107,7 +120,7 @@ describe('Multi List Sortable Drag and Drop', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [SortableDirective, SortableContainerDirective, Container4],
-      providers: [DragDropConfig, DragDropService, DragDropSortableService]
+      providers: [DragDropConfig, DragDropService, DragDropSortableService],
     });
 
     componentFixture = TestBed.createComponent(Container4);
@@ -129,11 +142,15 @@ describe('Multi List Sortable Drag and Drop', () => {
     container.multiTwoList = multiTwoList;
     componentFixture.detectChanges();
 
-    const divElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('div');
+    const divElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector(
+      'div'
+    );
     expect(divElem).toBeDefined();
     expect(divElem.children.length).toBe(3);
 
-    const singleElem: HTMLElement = <HTMLElement>divElem.querySelector('#single ul');
+    const singleElem: HTMLElement = <HTMLElement>(
+      divElem.querySelector('#single ul')
+    );
     swap(singleElem.children, 0, 1);
     componentFixture.detectChanges();
     expect(singleList[0]).toBe('sTwo');
@@ -141,7 +158,9 @@ describe('Multi List Sortable Drag and Drop', () => {
     expect(singleList[1]).toBe('sOne');
     expect(singleElem.children[1].textContent).toEqual('sOne');
 
-    const multiOneElem: HTMLElement = <HTMLElement>divElem.querySelector('#multiOne ul');
+    const multiOneElem: HTMLElement = <HTMLElement>(
+      divElem.querySelector('#multiOne ul')
+    );
     swap(multiOneElem.children, 1, 2);
     componentFixture.detectChanges();
     expect(multiOneList[1]).toBe('mThree');
@@ -149,7 +168,9 @@ describe('Multi List Sortable Drag and Drop', () => {
     expect(multiOneList[2]).toBe('mTwo');
     expect(multiOneElem.children[2].textContent).toEqual('mTwo');
 
-    const multiTwoElem: HTMLElement = <HTMLElement>divElem.querySelector('#multiTwo ul');
+    const multiTwoElem: HTMLElement = <HTMLElement>(
+      divElem.querySelector('#multiTwo ul')
+    );
     swap(multiTwoElem.children, 1, 2);
     componentFixture.detectChanges();
     expect(multiTwoList[1]).toBe('mSix');
@@ -168,12 +189,18 @@ describe('Multi List Sortable Drag and Drop', () => {
     container.multiTwoList = multiTwoList;
     componentFixture.detectChanges();
 
-    const divElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('div');
+    const divElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector(
+      'div'
+    );
     expect(divElem).toBeDefined();
     expect(divElem.children.length).toBe(3);
 
-    const multiOneElem: HTMLElement = <HTMLElement>divElem.querySelector('#multiOne ul');
-    const multiTwoElem: HTMLElement = <HTMLElement>divElem.querySelector('#multiTwo ul');
+    const multiOneElem: HTMLElement = <HTMLElement>(
+      divElem.querySelector('#multiOne ul')
+    );
+    const multiTwoElem: HTMLElement = <HTMLElement>(
+      divElem.querySelector('#multiTwo ul')
+    );
     swapMultiple(multiOneElem.children, 0, multiTwoElem.children, 0);
     componentFixture.detectChanges();
 
@@ -195,12 +222,18 @@ describe('Multi List Sortable Drag and Drop', () => {
     container.multiTwoList = multiTwoList;
     componentFixture.detectChanges();
 
-    const divElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('div');
+    const divElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector(
+      'div'
+    );
     expect(divElem).toBeDefined();
     expect(divElem.children.length).toBe(3);
 
-    const singleElem: HTMLElement = <HTMLElement>divElem.querySelector('#single ul');
-    const multiOneElem: HTMLElement = <HTMLElement>divElem.querySelector('#multiOne ul');
+    const singleElem: HTMLElement = <HTMLElement>(
+      divElem.querySelector('#single ul')
+    );
+    const multiOneElem: HTMLElement = <HTMLElement>(
+      divElem.querySelector('#multiOne ul')
+    );
     swapMultiple(singleElem.children, 0, multiOneElem.children, 0);
     componentFixture.detectChanges();
 
@@ -214,21 +247,38 @@ describe('Multi List Sortable Drag and Drop', () => {
   it('When the list is empty the parent must handle dragenter events', () => {
     const singleList: Array<string> = ['sOne', 'sTwo', 'sThree'];
     const multiOneList: Array<string> = [];
-    const multiTwoList: Array<string> = ['mOne', 'mTwo', 'mThree', 'mFour', 'mFive', 'mSix'];
+    const multiTwoList: Array<string> = [
+      'mOne',
+      'mTwo',
+      'mThree',
+      'mFour',
+      'mFive',
+      'mSix',
+    ];
 
     container.singleList = singleList;
     container.multiOneList = multiOneList;
     container.multiTwoList = multiTwoList;
     componentFixture.detectChanges();
 
-    const divElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector('div');
+    const divElem: HTMLElement = componentFixture.elementRef.nativeElement.querySelector(
+      'div'
+    );
     expect(divElem).toBeDefined();
     expect(divElem.children.length).toBe(3);
 
-    const multiOneElem: HTMLElement = <HTMLElement>divElem.querySelector('#multiOne');
-    const multiTwoUlElem: HTMLElement = <HTMLElement>divElem.querySelector('#multiTwo ul');
+    const multiOneElem: HTMLElement = <HTMLElement>(
+      divElem.querySelector('#multiOne')
+    );
+    const multiTwoUlElem: HTMLElement = <HTMLElement>(
+      divElem.querySelector('#multiTwo ul')
+    );
 
-    triggerEvent(<HTMLElement>multiTwoUlElem.children[3], 'dragstart', 'MouseEvent');
+    triggerEvent(
+      <HTMLElement>multiTwoUlElem.children[3],
+      'dragstart',
+      'MouseEvent'
+    );
     triggerEvent(multiOneElem, 'dragenter', 'MouseEvent');
     componentFixture.detectChanges();
 
@@ -240,11 +290,20 @@ describe('Multi List Sortable Drag and Drop', () => {
   });
 });
 
-function swap(nodes: HTMLCollection, firstNodeId: number, secondNodeId: number) {
+function swap(
+  nodes: HTMLCollection,
+  firstNodeId: number,
+  secondNodeId: number
+) {
   swapMultiple(nodes, firstNodeId, nodes, secondNodeId);
 }
 
-function swapMultiple(nodesOne: HTMLCollection, firstNodeId: number, nodesTwo: HTMLCollection, secondNodeId: number) {
+function swapMultiple(
+  nodesOne: HTMLCollection,
+  firstNodeId: number,
+  nodesTwo: HTMLCollection,
+  secondNodeId: number
+) {
   triggerEvent(<HTMLElement>nodesOne[firstNodeId], 'dragstart', 'MouseEvent');
   triggerEvent(<HTMLElement>nodesTwo[secondNodeId], 'dragenter', 'MouseEvent');
 }

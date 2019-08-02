@@ -1,12 +1,12 @@
-import {ComponentFixture, getTestBed, TestBed} from '@angular/core/testing';
+import { ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
 
-import {DragDropConfig} from '../config/drag-drop-config';
-import {DraggableHandleDirective} from '../directives/draggable-handle.directive';
-import {DraggableDirective} from '../directives/draggable.directive';
-import {DroppableDirective} from '../directives/droppable.directive';
-import {DragDropService} from '../service/drag-drop/drag-drop.service';
+import { DragDropConfig } from '../config/drag-drop-config';
+import { DraggableHandleDirective } from '../directives/draggable-handle.directive';
+import { DraggableDirective } from '../directives/draggable.directive';
+import { DroppableDirective } from '../directives/droppable.directive';
+import { DragDropService } from '../service/drag-drop/drag-drop.service';
 
-import {Container5, triggerEvent} from './dnd-component.factory';
+import { Container5, triggerEvent } from './dnd-component.factory';
 
 describe('Drag and Drop with handle', () => {
   let fixture: ComponentFixture<Container5>;
@@ -16,8 +16,13 @@ describe('Drag and Drop with handle', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [DraggableDirective, DroppableDirective, DraggableHandleDirective, Container5],
-      providers: [DragDropConfig, DragDropService]
+      declarations: [
+        DraggableDirective,
+        DroppableDirective,
+        DraggableHandleDirective,
+        Container5,
+      ],
+      providers: [DragDropConfig, DragDropService],
     });
 
     fixture = TestBed.createComponent(Container5);
@@ -34,20 +39,30 @@ describe('Drag and Drop with handle', () => {
   });
 
   it('Drag start event should be activated if dragged by handle', (done: any) => {
-    const dragElem: HTMLElement = fixture.elementRef.nativeElement.querySelector('#dragId');
-    const handleElem: HTMLElement = fixture.elementRef.nativeElement.querySelector('#handle');
+    const dragElem: HTMLElement = fixture.elementRef.nativeElement.querySelector(
+      '#dragId'
+    );
+    const handleElem: HTMLElement = fixture.elementRef.nativeElement.querySelector(
+      '#handle'
+    );
 
-    expect(dragDropService.dragData).not.toBeDefined('dragDropService.dragData should not be defined');
+    expect(dragDropService.dragData).not.toBeDefined(
+      'dragDropService.dragData should not be defined'
+    );
 
     triggerEvent(handleElem, 'mousedown', 'MouseEvent');
     triggerEvent(dragElem, 'dragstart', 'MouseEvent');
     fixture.detectChanges();
-    expect(dragDropService.dragData).toBeDefined('dragDropService.dragData should be defined');
+    expect(dragDropService.dragData).toBeDefined(
+      'dragDropService.dragData should be defined'
+    );
 
     triggerEvent(dragElem, 'dragend', 'MouseEvent');
     triggerEvent(handleElem, 'mouseup', 'MouseEvent');
     fixture.detectChanges();
-    expect(dragDropService.dragData).toBeNull('dragDropService.dragData should be null');
+    expect(dragDropService.dragData).toBeNull(
+      'dragDropService.dragData should be null'
+    );
 
     done();
   });
@@ -56,19 +71,25 @@ describe('Drag and Drop with handle', () => {
     container.dragEnabled = false;
     fixture.detectChanges();
 
-    const dragElem: HTMLElement = fixture.elementRef.nativeElement.querySelector('#dragId');
-    const nonHandleElem: HTMLElement = fixture.elementRef.nativeElement.querySelector('#non-handle');
+    const dragElem: HTMLElement = fixture.elementRef.nativeElement.querySelector(
+      '#dragId'
+    );
+    const nonHandleElem: HTMLElement = fixture.elementRef.nativeElement.querySelector(
+      '#non-handle'
+    );
 
     expect(dragDropService.dragData).not.toBeDefined();
-    expect(dragElem.classList.contains(config.onDragStartClass))
-        .toBeFalsy('dragElem.classList should not contain config.onDragStartClass');
+    expect(dragElem.classList.contains(config.onDragStartClass)).toBeFalsy(
+      'dragElem.classList should not contain config.onDragStartClass'
+    );
 
     triggerEvent(nonHandleElem, 'mousedown', 'MouseEvent');
     triggerEvent(dragElem, 'dragstart', 'MouseEvent');
     fixture.detectChanges();
     expect(dragDropService.dragData).not.toBeDefined();
-    expect(dragElem.classList.contains(config.onDragStartClass))
-        .toBeFalsy('dragElem.classList should not contain config.onDragStartClass');
+    expect(dragElem.classList.contains(config.onDragStartClass)).toBeFalsy(
+      'dragElem.classList should not contain config.onDragStartClass'
+    );
 
     done();
   });

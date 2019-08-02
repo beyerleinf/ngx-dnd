@@ -1,21 +1,21 @@
-import {ChangeDetectorRef, Directive, ElementRef, Input} from '@angular/core';
-import {FormArray} from '@angular/forms';
+import { ChangeDetectorRef, Directive, ElementRef, Input } from '@angular/core';
+import { FormArray } from '@angular/forms';
 
-import {DragDropConfig} from '../config/drag-drop-config';
-import {DragDropSortableService} from '../service/drag-drop-sortable/drag-drop-sortable.service';
-import {DragDropService} from '../service/drag-drop/drag-drop.service';
-import {SortableArrayHandler, SortableFormArrayHandler} from '../util';
+import { DragDropConfig } from '../config/drag-drop-config';
+import { DragDropSortableService } from '../service/drag-drop-sortable/drag-drop-sortable.service';
+import { DragDropService } from '../service/drag-drop/drag-drop.service';
+import { SortableArrayHandler, SortableFormArrayHandler } from '../util';
 
-import {AbstractDirective} from './abstract/abstract.directive';
+import { AbstractDirective } from './abstract/abstract.directive';
 
 /* tslint:disable directive-selector */
-@Directive({selector: '[dnd-sortable-container]'})
+@Directive({ selector: '[dnd-sortable-container]' })
 export class SortableContainerDirective extends AbstractDirective {
-  private _sortableData: any[]|FormArray;
-  private _sortableHandler: SortableFormArrayHandler|SortableArrayHandler;
+  private _sortableData: any[] | FormArray;
+  private _sortableHandler: SortableFormArrayHandler | SortableArrayHandler;
 
   @Input()
-  set sortableData(sortableData: Array<any>|FormArray) {
+  set sortableData(sortableData: Array<any> | FormArray) {
     this._sortableData = sortableData;
     if (sortableData instanceof FormArray) {
       this._sortableHandler = new SortableFormArrayHandler();
@@ -26,13 +26,17 @@ export class SortableContainerDirective extends AbstractDirective {
     this.dropEnabled = !!this._sortableData;
   }
 
-  get sortableData(): Array<any>|FormArray {
+  get sortableData(): Array<any> | FormArray {
     return this._sortableData;
   }
 
   constructor(
-      elementRef: ElementRef, dragDropService: DragDropService, config: DragDropConfig, cdr: ChangeDetectorRef,
-      private sortableDataService: DragDropSortableService) {
+    elementRef: ElementRef,
+    dragDropService: DragDropService,
+    config: DragDropConfig,
+    cdr: ChangeDetectorRef,
+    private sortableDataService: DragDropSortableService
+  ) {
     super(elementRef, dragDropService, config, cdr);
     this._sortableData = [];
     this.dragEnabled = false;
@@ -40,12 +44,18 @@ export class SortableContainerDirective extends AbstractDirective {
 
   dragEnterCallback(event: Event): void {
     if (this.sortableDataService.isDragged) {
-      const item = this.sortableDataService.sortableContainer.getItemAt(this.sortableDataService.index);
+      const item = this.sortableDataService.sortableContainer.getItemAt(
+        this.sortableDataService.index
+      );
 
       if (this.indexOf(item === -1)) {
-        this.sortableDataService.sortableContainer.removeItemAt(this.sortableDataService.index);
+        this.sortableDataService.sortableContainer.removeItemAt(
+          this.sortableDataService.index
+        );
 
-        if (this.sortableDataService.sortableContainer.sortableData.length === 0) {
+        if (
+          this.sortableDataService.sortableContainer.sortableData.length === 0
+        ) {
           this.sortableDataService.sortableContainer.dropEnabled = true;
         }
 

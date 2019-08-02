@@ -1,11 +1,11 @@
-import {ComponentFixture, getTestBed, TestBed} from '@angular/core/testing';
+import { ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
 
-import {DragDropConfig} from '../config/drag-drop-config';
-import {DraggableDirective} from '../directives/draggable.directive';
-import {DroppableDirective} from '../directives/droppable.directive';
-import {DragDropService} from '../service/drag-drop/drag-drop.service';
+import { DragDropConfig } from '../config/drag-drop-config';
+import { DraggableDirective } from '../directives/draggable.directive';
+import { DroppableDirective } from '../directives/droppable.directive';
+import { DragDropService } from '../service/drag-drop/drag-drop.service';
 
-import {Container2, triggerEvent} from './dnd-component.factory';
+import { Container2, triggerEvent } from './dnd-component.factory';
 
 describe('Drag and Drop with draggable data', () => {
   let fixture: ComponentFixture<Container2>;
@@ -16,7 +16,7 @@ describe('Drag and Drop with draggable data', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [DraggableDirective, DroppableDirective, Container2],
-      providers: [DragDropConfig, DragDropService]
+      providers: [DragDropConfig, DragDropService],
     });
 
     fixture = TestBed.createComponent(Container2);
@@ -33,7 +33,9 @@ describe('Drag and Drop with draggable data', () => {
   });
 
   it('It should add the "draggable" attribute', (done: any) => {
-    const dragElem: HTMLElement = fixture.elementRef.nativeElement.querySelector('#dragId');
+    const dragElem: HTMLElement = fixture.elementRef.nativeElement.querySelector(
+      '#dragId'
+    );
 
     expect(dragElem).toBeDefined();
     expect(dragElem.attributes[<any>'draggable']).toBeTruthy();
@@ -42,7 +44,9 @@ describe('Drag and Drop with draggable data', () => {
   });
 
   it('Drag events should add/remove the draggable data to/from the DragDropService', (done: any) => {
-    const dragElem: HTMLElement = fixture.elementRef.nativeElement.querySelector('#dragId');
+    const dragElem: HTMLElement = fixture.elementRef.nativeElement.querySelector(
+      '#dragId'
+    );
 
     expect(dragDropService.dragData).not.toBeDefined();
 
@@ -58,7 +62,9 @@ describe('Drag and Drop with draggable data', () => {
   });
 
   it('Drag events should add/remove the expected classes to the target element', (done: any) => {
-    const dragElem: HTMLElement = fixture.elementRef.nativeElement.querySelector('#dragId');
+    const dragElem: HTMLElement = fixture.elementRef.nativeElement.querySelector(
+      '#dragId'
+    );
 
     expect(dragElem.classList.contains(config.onDragStartClass)).toBeFalsy();
 
@@ -77,7 +83,9 @@ describe('Drag and Drop with draggable data', () => {
     container.dragEnabled = false;
     fixture.detectChanges();
 
-    const dragElem: HTMLElement = fixture.elementRef.nativeElement.querySelector('#dragId');
+    const dragElem: HTMLElement = fixture.elementRef.nativeElement.querySelector(
+      '#dragId'
+    );
 
     expect(dragDropService.dragData).not.toBeDefined();
     expect(dragElem.classList.contains(config.onDragStartClass)).toBeFalsy();
@@ -91,8 +99,12 @@ describe('Drag and Drop with draggable data', () => {
   });
 
   it('Drop events should add/remove the expected classes to the target element', (done: any) => {
-    const dragElem: HTMLElement = fixture.elementRef.nativeElement.querySelector('#dragId');
-    const dropElem: HTMLElement = fixture.elementRef.nativeElement.querySelector('#dropId');
+    const dragElem: HTMLElement = fixture.elementRef.nativeElement.querySelector(
+      '#dragId'
+    );
+    const dropElem: HTMLElement = fixture.elementRef.nativeElement.querySelector(
+      '#dropId'
+    );
 
     expect(dropElem.classList.contains(config.onDragEnterClass)).toBeFalsy();
     expect(dropElem.classList.contains(config.onDragOverClass)).toBeFalsy();
@@ -129,29 +141,36 @@ describe('Drag and Drop with draggable data', () => {
   });
 
   it('Drop event should activate the onDropSuccess and onDragSuccess callbacks', (done: any) => {
-    const dragElem: HTMLElement = fixture.elementRef.nativeElement.querySelector('#dragId');
-    const dropElem: HTMLElement = fixture.elementRef.nativeElement.querySelector('#dropId');
+    const dragElem: HTMLElement = fixture.elementRef.nativeElement.querySelector(
+      '#dragId'
+    );
+    const dropElem: HTMLElement = fixture.elementRef.nativeElement.querySelector(
+      '#dropId'
+    );
 
-    let dragCount: number = 0, dropCount: number = 0;
+    let dragCount: number = 0,
+      dropCount: number = 0;
     container.drag.subscribe(
-        ($event: any) => {
-          dragCount++;
-        },
-        (error: any) => {},
-        () => {
-          // Here is a function called when stream is complete
-          expect(dragCount).toBe(0);
-        });
+      ($event: any) => {
+        dragCount++;
+      },
+      (error: any) => {},
+      () => {
+        // Here is a function called when stream is complete
+        expect(dragCount).toBe(0);
+      }
+    );
 
     container.drop.subscribe(
-        ($event: any) => {
-          dropCount++;
-        },
-        (error: any) => {},
-        () => {
-          // Here is a function called when stream is complete
-          expect(dropCount).toBe(0);
-        });
+      ($event: any) => {
+        dropCount++;
+      },
+      (error: any) => {},
+      () => {
+        // Here is a function called when stream is complete
+        expect(dropCount).toBe(0);
+      }
+    );
 
     triggerEvent(dragElem, 'dragstart', 'MouseEvent');
     triggerEvent(dragElem, 'dragend', 'MouseEvent');
@@ -164,13 +183,17 @@ describe('Drag and Drop with draggable data', () => {
   });
 
   it('The onDropSuccess callback should receive the dragged data as parameter', (done: any) => {
-    const dragData = {id: 1, name: 'Hello'};
+    const dragData = { id: 1, name: 'Hello' };
 
     container.dragData = dragData;
     fixture.detectChanges();
 
-    const dragElem: HTMLElement = fixture.elementRef.nativeElement.querySelector('#dragId');
-    const dropElem: HTMLElement = fixture.elementRef.nativeElement.querySelector('#dropId');
+    const dragElem: HTMLElement = fixture.elementRef.nativeElement.querySelector(
+      '#dragId'
+    );
+    const dropElem: HTMLElement = fixture.elementRef.nativeElement.querySelector(
+      '#dropId'
+    );
 
     container.drag.subscribe(($event: any) => {
       expect($event.dragData).toBe(dragData);

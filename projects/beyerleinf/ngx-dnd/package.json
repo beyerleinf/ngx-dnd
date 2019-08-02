@@ -1,6 +1,6 @@
 {
   "name": "@beyerleinf/ngx-dnd",
-  "version": "8.0.1",
+  "version": "8.0.2",
   "peerDependencies": {
     "@angular/common": ">=8.0.0 <9.0.0",
     "@angular/core": ">=8.0.0 <9.0.0"

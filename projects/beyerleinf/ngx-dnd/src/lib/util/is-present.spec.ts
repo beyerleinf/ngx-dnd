@@ -1,4 +1,4 @@
-import {isPresent} from './is-present';
+import { isPresent } from './is-present';
 
 describe('isPresent', () => {
   it('should return false when undefined given', () => {

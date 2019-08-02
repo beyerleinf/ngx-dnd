@@ -1,15 +1,12 @@
-import {ModuleWithProviders, NgModule} from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 
-import {DragDropConfig} from './config/drag-drop-config';
-import {DraggableHandleDirective} from './directives/draggable-handle.directive';
-import {DraggableDirective} from './directives/draggable.directive';
-import {DroppableDirective} from './directives/droppable.directive';
-import {SortableContainerDirective} from './directives/sortable-container.directive';
-import {SortableHandleDirective} from './directives/sortable-handle.directive';
-import {SortableDirective} from './directives/sortable.directive';
-
-// import {DraggableDirective, DraggableHandleDirective, DroppableDirective} from './directives';
-// import {SortableContainerDirective, SortableDirective, SortableHandleDirective} from './directives';
+import { DragDropConfig } from './config/drag-drop-config';
+import { DraggableHandleDirective } from './directives/draggable-handle.directive';
+import { DraggableDirective } from './directives/draggable.directive';
+import { DroppableDirective } from './directives/droppable.directive';
+import { SortableContainerDirective } from './directives/sortable-container.directive';
+import { SortableHandleDirective } from './directives/sortable-handle.directive';
+import { SortableDirective } from './directives/sortable.directive';
 
 @NgModule({
   declarations: [
@@ -28,13 +25,12 @@ import {SortableDirective} from './directives/sortable.directive';
     SortableDirective,
     SortableHandleDirective,
   ],
-
 })
 export class DndModule {
-  // static forRoot(): ModuleWithProviders {
-  //   return {
-  //     ngModule: DndModule,
-  //     providers: [DragDropConfig],
-  //   };
-  // }
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: DndModule,
+      providers: [DragDropConfig],
+    };
+  }
 }

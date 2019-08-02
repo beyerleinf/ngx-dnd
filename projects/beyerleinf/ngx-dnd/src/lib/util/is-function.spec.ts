@@ -1,4 +1,4 @@
-import {isFunction} from './is-function';
+import { isFunction } from './is-function';
 
 describe('isFunction', () => {
   it('should return false when no function given', () => {

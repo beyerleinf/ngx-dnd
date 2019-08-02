@@ -1,4 +1,4 @@
-import {isString} from './is-string';
+import { isString } from './is-string';
 
 describe('isString', () => {
   it('should return false if no string given', () => {

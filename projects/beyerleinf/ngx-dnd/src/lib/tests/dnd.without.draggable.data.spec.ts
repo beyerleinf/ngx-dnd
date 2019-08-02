@@ -1,11 +1,11 @@
-import {ComponentFixture, getTestBed, TestBed} from '@angular/core/testing';
+import { ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
 
-import {DragDropConfig} from '../config/drag-drop-config';
-import {DraggableDirective} from '../directives/draggable.directive';
-import {DroppableDirective} from '../directives/droppable.directive';
-import {DragDropService} from '../service/drag-drop/drag-drop.service';
+import { DragDropConfig } from '../config/drag-drop-config';
+import { DraggableDirective } from '../directives/draggable.directive';
+import { DroppableDirective } from '../directives/droppable.directive';
+import { DragDropService } from '../service/drag-drop/drag-drop.service';
 
-import {Container, triggerEvent} from './dnd-component.factory';
+import { Container, triggerEvent } from './dnd-component.factory';
 
 describe('Drag and Drop without draggable data', () => {
   let fixture: ComponentFixture<Container>;
@@ -15,7 +15,7 @@ describe('Drag and Drop without draggable data', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [DraggableDirective, DroppableDirective, Container],
-      providers: [DragDropConfig, DragDropService]
+      providers: [DragDropConfig, DragDropService],
     });
 
     config = getTestBed().get(DragDropConfig);
@@ -30,40 +30,49 @@ describe('Drag and Drop without draggable data', () => {
   });
 
   it('Drop events should not be activated on the wrong drop-zone', (done: any) => {
-    const dragElemOne: HTMLElement = fixture.elementRef.nativeElement.querySelector('#dragIdOne');
-    const dropElemTwo: HTMLElement = fixture.elementRef.nativeElement.querySelector('#dropIdTwo');
+    const dragElemOne: HTMLElement = fixture.elementRef.nativeElement.querySelector(
+      '#dragIdOne'
+    );
+    const dropElemTwo: HTMLElement = fixture.elementRef.nativeElement.querySelector(
+      '#dropIdTwo'
+    );
 
     triggerEvent(dragElemOne, 'dragstart', 'MouseEvent');
     triggerEvent(dropElemTwo, 'dragenter', 'MouseEvent');
     fixture.detectChanges();
-    expect(dropElemTwo.classList.contains(config.onDragEnterClass))
-        .toBeFalsy('dropElemTwo.classList should not contain config.onDragEnterClass');
+    expect(dropElemTwo.classList.contains(config.onDragEnterClass)).toBeFalsy(
+      'dropElemTwo.classList should not contain config.onDragEnterClass'
+    );
 
     triggerEvent(dropElemTwo, 'dragover', 'MouseEvent');
     fixture.detectChanges();
-    expect(dropElemTwo.classList.contains(config.onDragOverClass))
-        .toBeFalsy('dropElemTwo.classList should not contain config.onDragOverClass');
+    expect(dropElemTwo.classList.contains(config.onDragOverClass)).toBeFalsy(
+      'dropElemTwo.classList should not contain config.onDragOverClass'
+    );
 
-    let dragCount: number = 0, dropCount: number = 0;
+    let dragCount: number = 0,
+      dropCount: number = 0;
     container.dragOne.subscribe(
-        ($event: any) => {
-          dragCount++;
-        },
-        (error: any) => {},
-        () => {
-          // Here is a function called when stream is complete
-          expect(dragCount).toBe(0);
-        });
+      ($event: any) => {
+        dragCount++;
+      },
+      (error: any) => {},
+      () => {
+        // Here is a function called when stream is complete
+        expect(dragCount).toBe(0);
+      }
+    );
 
     container.dropTwo.subscribe(
-        ($event: any) => {
-          dropCount++;
-        },
-        (error: any) => {},
-        () => {
-          // Here is a function called when stream is complete
-          expect(dropCount).toBe(0);
-        });
+      ($event: any) => {
+        dropCount++;
+      },
+      (error: any) => {},
+      () => {
+        // Here is a function called when stream is complete
+        expect(dropCount).toBe(0);
+      }
+    );
     triggerEvent(dropElemTwo, 'drop', 'MouseEvent');
     fixture.detectChanges();
 
@@ -71,38 +80,47 @@ describe('Drag and Drop without draggable data', () => {
   });
 
   it('Drop events should be activated on the same drop-zone', (done: any) => {
-    const dragElemOne: HTMLElement = fixture.elementRef.nativeElement.querySelector('#dragIdOne');
-    const dropElemOne: HTMLElement = fixture.elementRef.nativeElement.querySelector('#dropIdOne');
+    const dragElemOne: HTMLElement = fixture.elementRef.nativeElement.querySelector(
+      '#dragIdOne'
+    );
+    const dropElemOne: HTMLElement = fixture.elementRef.nativeElement.querySelector(
+      '#dropIdOne'
+    );
 
     triggerEvent(dragElemOne, 'dragstart', 'MouseEvent');
     triggerEvent(dropElemOne, 'dragenter', 'MouseEvent');
     fixture.detectChanges();
-    expect(dropElemOne.classList.contains(config.onDragEnterClass)).toBeTruthy();
+    expect(
+      dropElemOne.classList.contains(config.onDragEnterClass)
+    ).toBeTruthy();
 
     triggerEvent(dropElemOne, 'dragover', 'MouseEvent');
     fixture.detectChanges();
     expect(dropElemOne.classList.contains(config.onDragOverClass)).toBeTruthy();
 
-    let dragCount: number = 0, dropCount: number = 0;
+    let dragCount: number = 0,
+      dropCount: number = 0;
     container.dragOne.subscribe(
-        ($event: any) => {
-          dragCount++;
-        },
-        (error: any) => {},
-        () => {
-          // Here is a function called when stream is complete
-          expect(dragCount).toBe(1);
-        });
+      ($event: any) => {
+        dragCount++;
+      },
+      (error: any) => {},
+      () => {
+        // Here is a function called when stream is complete
+        expect(dragCount).toBe(1);
+      }
+    );
 
     container.dropOne.subscribe(
-        ($event: any) => {
-          dropCount++;
-        },
-        (error: any) => {},
-        () => {
-          // Here is a function called when stream is complete
-          expect(dropCount).toBe(1);
-        });
+      ($event: any) => {
+        dropCount++;
+      },
+      (error: any) => {},
+      () => {
+        // Here is a function called when stream is complete
+        expect(dropCount).toBe(1);
+      }
+    );
     triggerEvent(dropElemOne, 'drop', 'MouseEvent');
     fixture.detectChanges();
 
@@ -110,38 +128,49 @@ describe('Drag and Drop without draggable data', () => {
   });
 
   it('Drop events on multiple drop-zone', (done: any) => {
-    const dragElemOneTwo: HTMLElement = fixture.elementRef.nativeElement.querySelector('#dragIdOneTwo');
-    const dropElemOneTwo: HTMLElement = fixture.elementRef.nativeElement.querySelector('#dropIdOneTwo');
+    const dragElemOneTwo: HTMLElement = fixture.elementRef.nativeElement.querySelector(
+      '#dragIdOneTwo'
+    );
+    const dropElemOneTwo: HTMLElement = fixture.elementRef.nativeElement.querySelector(
+      '#dropIdOneTwo'
+    );
 
     triggerEvent(dragElemOneTwo, 'dragstart', 'MouseEvent');
     triggerEvent(dropElemOneTwo, 'dragenter', 'MouseEvent');
     fixture.detectChanges();
-    expect(dropElemOneTwo.classList.contains(config.onDragEnterClass)).toBeTruthy();
+    expect(
+      dropElemOneTwo.classList.contains(config.onDragEnterClass)
+    ).toBeTruthy();
 
     triggerEvent(dropElemOneTwo, 'dragover', 'MouseEvent');
     fixture.detectChanges();
-    expect(dropElemOneTwo.classList.contains(config.onDragOverClass)).toBeTruthy();
+    expect(
+      dropElemOneTwo.classList.contains(config.onDragOverClass)
+    ).toBeTruthy();
 
-    let dragCount: number = 0, dropCount: number = 0;
+    let dragCount: number = 0,
+      dropCount: number = 0;
     container.dragOne.subscribe(
-        ($event: any) => {
-          dragCount++;
-        },
-        (error: any) => {},
-        () => {
-          // Here is a function called when stream is complete
-          expect(dragCount).toBe(1);
-        });
+      ($event: any) => {
+        dragCount++;
+      },
+      (error: any) => {},
+      () => {
+        // Here is a function called when stream is complete
+        expect(dragCount).toBe(1);
+      }
+    );
 
     container.dropOne.subscribe(
-        ($event: any) => {
-          dropCount++;
-        },
-        (error: any) => {},
-        () => {
-          // Here is a function called when stream is complete
-          expect(dropCount).toBe(1);
-        });
+      ($event: any) => {
+        dropCount++;
+      },
+      (error: any) => {},
+      () => {
+        // Here is a function called when stream is complete
+        expect(dropCount).toBe(1);
+      }
+    );
     triggerEvent(dropElemOneTwo, 'drop', 'MouseEvent');
     fixture.detectChanges();
 

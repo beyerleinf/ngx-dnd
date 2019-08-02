@@ -1,10 +1,10 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
-import {DragDropConfig} from '../../config/drag-drop-config';
-import {SortableContainerDirective} from '../../directives/sortable-container.directive';
-import {isPresent} from '../../util';
+import { DragDropConfig } from '../../config/drag-drop-config';
+import { SortableContainerDirective } from '../../directives/sortable-container.directive';
+import { isPresent } from '../../util';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class DragDropSortableService {
   /**
    * The last element that was marked sortable.

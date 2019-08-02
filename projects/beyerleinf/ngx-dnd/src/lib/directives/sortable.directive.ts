@@ -1,14 +1,21 @@
-import {ChangeDetectorRef, Directive, ElementRef, EventEmitter, Input, Output} from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Directive,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 
-import {DragDropConfig} from '../config/drag-drop-config';
-import {DragDropSortableService} from '../service/drag-drop-sortable/drag-drop-sortable.service';
-import {DragDropService} from '../service/drag-drop/drag-drop.service';
+import { DragDropConfig } from '../config/drag-drop-config';
+import { DragDropSortableService } from '../service/drag-drop-sortable/drag-drop-sortable.service';
+import { DragDropService } from '../service/drag-drop/drag-drop.service';
 
-import {AbstractDirective} from './abstract/abstract.directive';
-import {SortableContainerDirective} from './sortable-container.directive';
+import { AbstractDirective } from './abstract/abstract.directive';
+import { SortableContainerDirective } from './sortable-container.directive';
 
 /* tslint:disable directive-selector no-output-on-prefix */
-@Directive({selector: '[dnd-sortable]'})
+@Directive({ selector: '[dnd-sortable]' })
 export class SortableDirective extends AbstractDirective {
   @Input() sortableIndex: number;
   @Input() dragData: any;
@@ -20,9 +27,13 @@ export class SortableDirective extends AbstractDirective {
   @Output() onDropSuccess: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
-      elementRef: ElementRef, dragDropService: DragDropService, config: DragDropConfig,
-      private sortableContainer: SortableContainerDirective, private sortableDataService: DragDropSortableService,
-      cdr: ChangeDetectorRef) {
+    elementRef: ElementRef,
+    dragDropService: DragDropService,
+    config: DragDropConfig,
+    private sortableContainer: SortableContainerDirective,
+    private sortableDataService: DragDropSortableService,
+    cdr: ChangeDetectorRef
+  ) {
     super(elementRef, dragDropService, config, cdr);
     this.dropZones = this.sortableContainer.dropZones;
     this.dragEnabled = true;
@@ -43,7 +54,10 @@ export class SortableDirective extends AbstractDirective {
   }
 
   dragOverCallback(): void {
-    if (this.sortableDataService.isDragged && this.element !== this.sortableDataService.element) {
+    if (
+      this.sortableDataService.isDragged &&
+      this.element !== this.sortableDataService.element
+    ) {
       this.sortableDataService.sortableContainer = this.sortableContainer;
       this.sortableDataService.index = this.sortableIndex;
       this.sortableDataService.markSortable(this.element);
@@ -67,12 +81,21 @@ export class SortableDirective extends AbstractDirective {
   dragEnterCallback(): void {
     if (this.sortableDataService.isDragged) {
       this.sortableDataService.markSortable(this.element);
-      if ((this.sortableIndex !== this.sortableDataService.index) ||
-          (this.sortableDataService.sortableContainer.sortableData !== this.sortableContainer.sortableData)) {
-        const item: any = this.sortableDataService.sortableContainer.getItemAt(this.sortableDataService.index);
+      if (
+        this.sortableIndex !== this.sortableDataService.index ||
+        this.sortableDataService.sortableContainer.sortableData !==
+          this.sortableContainer.sortableData
+      ) {
+        const item: any = this.sortableDataService.sortableContainer.getItemAt(
+          this.sortableDataService.index
+        );
 
-        this.sortableDataService.sortableContainer.removeItemAt(this.sortableDataService.index);
-        if (this.sortableDataService.sortableContainer.sortableData.length === 0) {
+        this.sortableDataService.sortableContainer.removeItemAt(
+          this.sortableDataService.index
+        );
+        if (
+          this.sortableDataService.sortableContainer.sortableData.length === 0
+        ) {
           this.sortableDataService.sortableContainer.dropEnabled = true;
         }
 
@@ -91,7 +114,9 @@ export class SortableDirective extends AbstractDirective {
     if (this.sortableDataService.isDragged) {
       this.onDropSuccess.emit(this.dragDropService.dragData);
       if (this.dragDropService.onDragSuccessCallback) {
-        this.dragDropService.onDragSuccessCallback.emit(this.dragDropService.dragData);
+        this.dragDropService.onDragSuccessCallback.emit(
+          this.dragDropService.dragData
+        );
       }
 
       this.sortableContainer.detectChanges();
