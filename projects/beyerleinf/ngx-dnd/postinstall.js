@@ -1,3 +1,13 @@
+const fs = require('fs');
+
+const file = fs.readFileSync('./package.json');
+
+const package = JSON.parse(file);
+
+delete package.scripts;
+
+fs.writeFileSync('./package.json', JSON.stringify(package, null, 2));
+
 console.log(
   '\n\n\u001b[96mWe recommend switching to native drag and drop using Angular CDK (\u001B[94mhttps://material.angular.io/cdk/drag-drop/overview\u001B[96m)\u001b[0m'
 );
