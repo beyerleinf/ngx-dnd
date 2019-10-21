@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.1.3](https://github.com/beyerleinf/ngx-dnd/compare/v7.1.2...v7.1.3) (2019-10-21)
+
+
+
 ### [7.1.2](https://github.com/beyerleinf/ngx-dnd/compare/v7.1.1...v7.1.2) (2019-08-02)
 
 
