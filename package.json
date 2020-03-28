@@ -29,7 +29,7 @@
     "ngx-bootstrap": "^3.2.0",
     "ngx-highlightjs": "^3.0.1",
     "rxjs": "^6.5.2",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.10.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.800.0",
