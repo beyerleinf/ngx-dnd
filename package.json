@@ -25,7 +25,7 @@
     "@angular/platform-browser-dynamic": "^8.0.0",
     "@angular/router": "^8.0.0",
     "core-js": "^2.6.3",
-    "highlight.js": "^9.14.2",
+    "highlight.js": "^9.18.1",
     "ngx-bootstrap": "^3.2.0",
     "ngx-highlightjs": "^3.0.1",
     "rxjs": "^6.5.2",
